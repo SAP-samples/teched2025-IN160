@@ -1,4 +1,4 @@
-# Session ID - Session Title
+# IN160 - Session Title
 
 ## Description
 
