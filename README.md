@@ -2,11 +2,12 @@
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2025 session called Session ID - Session Title.  
+This repository contains the material for the SAP TechEd 2025 session called IN160 - Empower your business through enterprise automation.
 
 ## Overview
 
 This session introduces attendees to...
+
 
 ## Requirements
 
