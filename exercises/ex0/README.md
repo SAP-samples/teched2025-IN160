@@ -60,6 +60,66 @@ Again, we have already configured the webhook as part of this exercise. Refer th
 
 6. Next, you'll define policies for API proxy. Click on **ShopifyWebhook**, then on the three dots and **Policies**.
 
+<br>![](/exercises/ex0/images/0_11.png)
+
+7. Define proxies in the **PreFlow**. Add **Key Value Map Operations** by clicking on **+** symbol next to it.
+
+<br>![](/exercises/ex0/images/0_12.png)
+
+8. In the dialog, you'll define the Key Value Map Operations policy. For that, provide the **Policy Name** as **GetShopifyKey** and click on **Add**.
+
+<br>![](/exercises/ex0/images/0_13.png)
+
+9. Click on **GetShopifyKey** and update the script as follows:
+
+<br>![](/exercises/ex0/images/0_14.png)
+
+Add the script for Shopify Key as follows:
+
+<!-- Key/value pairs can be stored, retrieved, and deleted from named existing maps by configuring this policy by specifying PUT, GET, or DELETE operations -->
+<!-- mapIdentifier refers to the name of the key value map -->
+<!-- Don't use Key Value Maps to store your logs as this can impact API Proxy runtime flow -->
+<KeyValueMapOperations mapIdentifier="ShopifyKey" async="true" continueOnError="false" enabled="true" xmlns="http://www.sap.com/apimgmt">
+    <Get assignTo="private.key">
+        <Key>
+            <Parameter>key</Parameter>
+        </Key>
+    </Get>
+	<!-- the scope of the key value map. Valid values are environment, organization, apiproxy and policy -->
+	<Scope>environment</Scope>
+</KeyValueMapOperations>
+
+<br>![](/exercises/ex0/images/0_15.png)
+
+10. Add extension policy, click on **Python Script**.
+    
+<br>![](/exercises/ex0/images/0_16.png)
+
+Provide the **Policy Name: checkHash** and click **Add**.
+
+<br>![](/exercises/ex0/images/0_17.png)
+
+The Policy editor will appear as follows:
+
+<br>![](/exercises/ex0/images/0_18.png)
+
+11. Next, add the **checkHash** python script by clicking on new script
+
+<br>![](/exercises/ex0/images/0_19.png)
+
+Then, provide details as follows:
+- Script name: validate
+- Script type: python
+- Script: create
+And click **Add**.
+
+<br>![](/exercises/ex0/images/0_20.png)
+
+
+
+
+
+
 
 
 
