@@ -9,9 +9,11 @@ This repository contains the material for the SAP TechEd 2025 session called IN1
 This session introduces attendees to [Enterprise Automation](https://www.sap.com/products/technology-platform/enterprise-automation.html) and how SAP Integration Suite, SAP Build, and SAP Signavio work together to optimize business processes. 
 Enterprise Automation is a comprehensive method for improving business processes through the smart integration of technologies such as Robotic Process Automation (RPA), Artificial Intelligence (AI), and cloud-based platforms. It goes beyond automating individual tasks and focuses on transforming entire end-to-end processes. The goal is to increase efficiency, accuracy, and agility by enabling fully integrated interaction across systems and departments.
 
-## Requirements
+## The scenario
 
-The requirements to follow the exercises in this repository are...
+You'll learn how to automate order processing for SAP and thirs-party applications. For that, you will subscribe to order creation events in Shopify and set up your iFlow to post and replicate orders in both SAP S/4HANA and Shopify. 
+Following, you will move on to creating a custom approval process in SAP Build. The goal of this process is to add validation and configuration steps, which will be managed through conditions and human-based approval tasks. 
+The process in SAP Build will be triggered by the order event configured in the Event Mesh service. Fortunately, Event Mesh and SAP Build integrate natively. This same native integration applies to iFlows created in SAP Integration Suite. This connection is important because, once an order has been approved, the iFlow will be triggered to post and replicate the order in both SAP S/4HANA and Shopify. 
 
 ## Exercises
 
