@@ -6,8 +6,8 @@ This repository contains the material for the SAP TechEd 2025 session called IN1
 
 ## Overview
 
-This session introduces attendees to...
-
+This session introduces attendees to [Enterprise Automation] (https://www.sap.com/products/technology-platform/enterprise-automation.html) and how SAP Integration Suite, SAP Build, and SAP Signavio work together to optimize business processes. 
+Enterprise Automation is a comprehensive method for improving business processes through the smart integration of technologies such as Robotic Process Automation (RPA), Artificial Intelligence (AI), and cloud-based platforms. It goes beyond automating individual tasks and focuses on transforming entire end-to-end processes. The goal is to increase efficiency, accuracy, and agility by enabling fully integrated interaction across systems and departments.
 
 ## Requirements
 
