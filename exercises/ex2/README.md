@@ -1,6 +1,6 @@
 # Publishing new order event using Event Mesh in SAP Integration Suite
 
-In this exercise, we will create...
+In this exercise, we will publish...
 
 ## Create package
 
