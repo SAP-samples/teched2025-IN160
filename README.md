@@ -1,4 +1,4 @@
-# IN160 - Session Title
+# IN160 - Empower your business through enterprise automation.
 
 ## Description
 
