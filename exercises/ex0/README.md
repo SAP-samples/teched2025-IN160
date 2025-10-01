@@ -74,8 +74,9 @@ Again, we have already configured the webhook as part of this exercise. Refer th
 
 <br>![](/exercises/ex0/images/0_14.png)
 
-Add the script for Shopify Key as follows:
 
+Add the script for **Shopify Key** as follows:
+```
 <!-- Key/value pairs can be stored, retrieved, and deleted from named existing maps by configuring this policy by specifying PUT, GET, or DELETE operations -->
 <!-- mapIdentifier refers to the name of the key value map -->
 <!-- Don't use Key Value Maps to store your logs as this can impact API Proxy runtime flow -->
@@ -88,6 +89,8 @@ Add the script for Shopify Key as follows:
 	<!-- the scope of the key value map. Valid values are environment, organization, apiproxy and policy -->
 	<Scope>environment</Scope>
 </KeyValueMapOperations>
+```
+
 
 <br>![](/exercises/ex0/images/0_15.png)
 
@@ -115,7 +118,9 @@ And click **Add**.
 
 <br>![](/exercises/ex0/images/0_20.png)
 
-12. Provide Script Resource by pasting the following in the section:
+
+12. Provide **Script Resource** by pasting the following in the section:
+```
 import hashlib
 import hmac
 import base64
@@ -151,14 +156,16 @@ flow.setVariable("doubleResultHash",doubleResultHash);
 
 if (doubleResultHash != doubleWebhookHash):
     raise NameError("Invalid Origin! Different HMAC.")
-
+```
 <br>![](/exercises/ex0/images/0_21_2.png)
+
 
 13. Go to **ProxyEndpoint>PreFlow**, click on **checkHash** policy, point the resource in the xml to the python script created earlier.
 
 <br>![](/exercises/ex0/images/0_23.png)
 
 The updated script in the **checkHash** policy will be as follows:
+```
 <!-- timelimit refers to the time limit for the execution of the policy -->
 <Script async="false" continueOnError="false" enabled="true" timeLimit="200" xmlns='http://www.sap.com/apimgmt'>
 	<!-- Include URL elements can refer to the script libraries that the main python script uses -->
@@ -166,6 +173,8 @@ The updated script in the **checkHash** policy will be as follows:
 	<ResourceURL>py://validate.py</ResourceURL>
 </Script>
 <!-- also creates two script files, myscriptmain.py and myscripthelp.py -->
+```
+
 
 
 Click on **Update** in the top right corner.
