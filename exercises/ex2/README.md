@@ -49,6 +49,56 @@ After choosing the adapter type, select the **arrow** connecting Sender and Proc
 
 <br>![](/exercises/ex2/images/2_9.png)
 
+8. In the **Connection** tab, enter the **Address** as: /in160/shopify/webhook/order/userXX (replace XX by your assigned user ID). And make sure **CSRF Protected** is **not** selected.
+
+<br>![](/exercises/ex2/images/2_10.png)
+
+9. Now click on the **Transformation** icon in the tool bar, and in the drop-down click the option **Script>Groovy Script**. 
+
+<br>![](/exercises/ex2/images/2_11.png)
+
+10. You should see an additional step added to the Integration Process as Groovy Script 1. Click on that step, then on the **Processing** tab and the **Select** button.
+
+<br>![](/exercises/ex2/images/2_12.png)
+
+11. Here you'll upload a local file, click **Upload from File System** and select the **“Ordermapping.groovy” script file**.
+
+<br>![](/exercises/ex2/images/2_13.png)
+
+The script will open. Read it through and click on **Apply**.
+
+<br>![](/exercises/ex2/images/2_14.png)
+
+12. Click on the **Transformation** icon and choose **Content Modifier** and place the step in the integration process, next to the Groovy Script you added earlier.
+
+<br>![](/exercises/ex2/images/2_15.png)
+
+13. Select the Content Modifier you just added, go to the **Message Header** tab and click on **Add**.
+
+<br>![](/exercises/ex2/images/2_16.png)
+
+Add the following content:
+- **Name**: content-type
+- **Source Type**: Constant
+- **Source value**: application/cloudevents+json
+
+<br>![](/exercises/ex2/images/2_17.png)
+
+14. Now, go to the **Exchange Property** tab and click **Add**.
+
+<br>![](/exercises/ex2/images/2_18.png)
+
+Add details:
+- **Name**: topic
+- **Source Type**: expression
+- **Source Value**: ${property.topic}
+
+<br>![](/exercises/ex2/images/2_19.png)
+
+15. Click on **End** (envelope icon) and drag the Arrow to the **Receiver**.
+
+<br>![](/exercises/ex2/images/2_20.png)
+
 
 
 ## Summary
