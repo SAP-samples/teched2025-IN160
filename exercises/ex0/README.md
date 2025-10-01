@@ -190,7 +190,7 @@ Add webhook details:
 
 Click on **Save** and you're done!
 
-<br>![](/exercises/ex0/images/0_29.png)
+<br>![](/exercises/ex0/images/0_30.png)
 
 ## Summary
 
