@@ -115,12 +115,78 @@ And click **Add**.
 
 <br>![](/exercises/ex0/images/0_20.png)
 
+12. Provide Script Resource by pasting the following in the section:
+import hashlib
+import hmac
+import base64
+import random
+import string
 
+def make_digest(secret, payload):
+  hashBytes = hmac.new(secret, msg=payload, digestmod=hashlib.sha256).digest();
+  base64Hash = base64.b64encode(hashBytes);
+  return base64Hash;
 
+message = "";
+message = flow.getVariable("request.content");
 
+webhookHash = flow.getVariable("request.header.x-shopify-hmac-sha256");
+key =  flow.getVariable("private.key")
+message = str(message);
+flow.setVariable("keylog",key);
+flow.setVariable("messagelog",message);
 
+resultHash = make_digest(key, message);
+flow.setVariable("resultHash",resultHash);
 
+lettersAndDigits = string.ascii_letters + string.digits;
+randomKey = ''.join((random.choice(lettersAndDigits) for i in range(44)));
 
+flow.setVariable("randomKey",randomKey);
+doubleWebhookHash = make_digest( randomKey, webhookHash );
+doubleResultHash = make_digest( randomKey, resultHash );
+
+flow.setVariable("doubleWebhookHash",doubleWebhookHash);
+flow.setVariable("doubleResultHash",doubleResultHash);
+
+if (doubleResultHash != doubleWebhookHash):
+    raise NameError("Invalid Origin! Different HMAC.")
+
+<br>![](/exercises/ex0/images/0_21_2.png)
+
+13. Go to **ProxyEndpoint>PreFlow**, click on **checkHash** policy, point the resource in the xml to the python script created earlier.
+
+<br>![](/exercises/ex0/images/0_23.png)
+
+The updated script in the **checkHash** policy will be as follows:
+<!-- timelimit refers to the time limit for the execution of the policy -->
+<Script async="false" continueOnError="false" enabled="true" timeLimit="200" xmlns='http://www.sap.com/apimgmt'>
+	<!-- Include URL elements can refer to the script libraries that the main python script uses -->
+	<!-- Resource URL refers to the main script file that should be run -->
+	<ResourceURL>py://validate.py</ResourceURL>
+</Script>
+<!-- also creates two script files, myscriptmain.py and myscripthelp.py -->
+
+Click on **Update** in the top right corner.
+
+14. Now, click on **Save** and then **Deploy** to deploy the API Proxy.
+
+<br>![](/exercises/ex0/images/0_24.png)
+
+15. Go to the Shopify system and add the reference to the webhook proxy just deployed. Click **Settings** on the lower left corner. Navigate to **Notifications** and click on Webhooks.
+
+<br>![](/exercises/ex0/images/0_25.png)
+
+16. Click on **Create webhook**.
+
+<br>![](/exercises/ex0/images/0_26.png)
+
+Add webhook details:
+- Event: order creation
+- Format: JSON
+- URL: <API proxy created>
+- Webhook API version: latest
+Click on **Save**.
 
 
 
