@@ -113,10 +113,25 @@ The list of Adapter Types will appear. Choose the type **AMQP** and then **WebSo
 <br>![](/exercises/ex2/images/2_22.png)
 
 17. Navigate to the **Processing** tab: add **Destination Name: ${property.topic}** and make sure **Header Format HAndling** is set to **Passthrough**.
-    Then click **Save**. And lastly, click **Deploy**.
+    Then click **Save**. And lastly, click **Deploy**,...
 
 <br>![](/exercises/ex2/images/2_23.png)
 
+... select runtime **Cloud Integration** and click **Yes**.
+
+<br>![](/exercises/ex2/images/2_24.png)
+
+18. Navigate to **Monitor>Integration and APIs**.
+
+<br>![](/exercises/ex2/images/2_25.png)
+
+And then, click **All** in the **Manage Integration Content** section...
+
+<br>![](/exercises/ex2/images/2_26.png)
+
+... to view your successfully deployed integration flow in the list of integration content. Well done!
+
+<br>![](/exercises/ex2/images/2_27.png)
 
 ## Summary
 
