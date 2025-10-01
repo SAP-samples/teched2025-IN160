@@ -167,28 +167,30 @@ The updated script in the **checkHash** policy will be as follows:
 </Script>
 <!-- also creates two script files, myscriptmain.py and myscripthelp.py -->
 
+
 Click on **Update** in the top right corner.
 
 14. Now, click on **Save** and then **Deploy** to deploy the API Proxy.
 
-<br>![](/exercises/ex0/images/0_24.png)
-
-15. Go to the Shopify system and add the reference to the webhook proxy just deployed. Click **Settings** on the lower left corner. Navigate to **Notifications** and click on Webhooks.
-
 <br>![](/exercises/ex0/images/0_25.png)
+
+15. Go to the Shopify system and add the reference to the webhook proxy just deployed. Click **Settings** on the lower left corner, then navigate to **Notifications** and click on Webhooks.
+
+<br>![](/exercises/ex0/images/0_27.png)
 
 16. Click on **Create webhook**.
 
-<br>![](/exercises/ex0/images/0_26.png)
+<br>![](/exercises/ex0/images/0_28.png)
 
 Add webhook details:
 - Event: order creation
 - Format: JSON
 - URL: <API proxy created>
 - Webhook API version: latest
-Click on **Save**.
 
+Click on **Save** and you're done!
 
+<br>![](/exercises/ex0/images/0_29.png)
 
 ## Summary
 
