@@ -99,6 +99,23 @@ Add details:
 
 <br>![](/exercises/ex2/images/2_20.png)
 
+The list of Adapter Types will appear. Choose the type **AMQP** and then **WebSocket**.
+
+<br>![](/exercises/ex2/images/2_21.png)
+
+16. Go to the **Connection** tab and **add the connection details** as follows:
+- **Host**: workshop-eu-02a-ff52646b-3869-4db9-bc8c-712e49ed1840.eu10.a.eventmesh.integration.cloud.sap
+- **Port**: 443
+- **Path**: /protocols/amqp10ws
+- **Authentication**: oAuth2ClientCredentials
+- **Credential Name**: EMIS(Already created as a pre-requisite)
+
+<br>![](/exercises/ex2/images/2_22.png)
+
+17. Navigate to the **Processing** tab: add **Destination Name: ${property.topic}** and make sure **Header Format HAndling** is set to **Passthrough**.
+    Then click **Save**. And lastly, click **Deploy**.
+
+<br>![](/exercises/ex2/images/2_23.png)
 
 
 ## Summary
