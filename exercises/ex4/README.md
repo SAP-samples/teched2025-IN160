@@ -5,23 +5,23 @@ In this exercise...
 
 1. Navigate to the [SAP Build Lobby](https://workshop-eu-02a.eu10.build.cloud.sap/lobby). The login credentials have been granted by the instructors for this Hands-On session. Within the SAP Build Lobby, **navigate** to the **Events** section.
 
-<br>![](/exercises/ex4/images/4_1.png)
+<br>![](/exercises/ex4/Images/4_1.png)
 
 And then, click **create** to generate a new event specification.
 
-<br>![](/exercises/ex4/images/4_2.png)
+<br>![](/exercises/ex4/Images/4_2.png)
 
 2. To generate event specifications, SAP Build offers you multiple possibilities, which you can explore. For this exercise, select **Upload Specification**.
 
-<br>![](/exercises/ex4/images/4_3.png)
+<br>![](/exercises/ex4/Images/4_3.png)
 
 Next, you'll upload the **JSON file**, which was previously downloaded in exercise 1 where you worked with the Event Mesh service. As a result, a new Event is now available in the SAP Build library, which you can reuse for your projects.
 
-<br>![](/exercises/ex4/images/4_4.png)
+<br>![](/exercises/ex4/Images/4_4.png)
 
 Give your event project a **name**, ideally something that is recognizable. Start with **TechED_IN160_userXX** (replace XX with your User ID). Click **Create**.
 
-<br>![](/exercises/ex4/images/4_5.png)
+<br>![](/exercises/ex4/Images/4_5.png)
 
 Congratulations you have now added a new event to SAP Build!
 
@@ -29,19 +29,19 @@ Congratulations you have now added a new event to SAP Build!
 
 1. Go back to the SAP Build Lobby front and create a new project by clicking on the **Create** button once gain.
 
-<br>![](/exercises/ex4/images/4_6.png)
+<br>![](/exercises/ex4/Images/4_6.png)
 
 2. SAP Build allows you to generate multiple artifacts, such as Fiori Apps, Mobile Apps, Digital Workspaces and so on. In this tutorial we focus on the capability to generate process extensions and automations. Click on **Automated Process** and select **Next**.
 
-<br>![](/exercises/ex4/images/4_7.png)
+<br>![](/exercises/ex4/Images/4_7.png)
 
 Select **Process** and click on **Next** once again.
 
-<br>![](/exercises/ex4/images/4_8.png)
+<br>![](/exercises/ex4/Images/4_8.png)
 
 3. Give your project a name: **TechED_IN160_userXX_Process** and replace XX with your assigned user ID. After that click **Review**. Review your project details and click on **Create**.
 
-<br>![](/exercises/ex4/images/4_9.png)
+<br>![](/exercises/ex4/Images/4_9.png)
 
 Well done! You now have an new project created in SAP Build.
 
@@ -49,12 +49,12 @@ Well done! You now have an new project created in SAP Build.
 
 1. After your project has been created, a new window pops up which forwards you to our Low-Code/No-Code development environment of SAP Build, in this case the Process Automation capability. Give your new process a name (**TechEd Approval Workflow**) and click on **Create**.
 
-<br>![](/exercises/ex4/images/4_10.png)
+<br>![](/exercises/ex4/Images/4_10.png)
 
 2. The first step that you need to do in your process is to **select** the trigger. SAP Build offers you many different mechanisms, like Form-based trigger, Scheduling or API-based triggers.
 In our case we want to select the **event**, which we have generated previously as the trigger of a new process instance. That means every time a customer generates a new order in Shopify we trigger our custom approval workflow. Click **Add a trigger**. 
 
-<br>![](/exercises/ex4/images/4_11.png)
+<br>![](/exercises/ex4/Images/4_11.png)
 
 Then, select for **Wait for an Event**.
 
