@@ -86,9 +86,92 @@ And place the **Receiver** box below the integration process. Then, click on **R
 
 <br>![](/exercises/ex3/images/3_19.png)
 
-Enter **Resource Path: A_Sales Order**.
+Enter Resource Path: **A_SalesOrder**.
 
 <br>![](/exercises/ex3/images/3_20.png)
+
+16. Click the **Transformation** icon form  the tool bar, then **Content Modifier**.
+
+<br>![](/exercises/ex3/images/3_21.png)
+
+And place the content modifier in the integration process, between the Tequest Reply and End.
+
+<br>![](/exercises/ex3/images/3_22.png)
+
+17. Click on the **content modifier**. Then navigate to **Exchange Property>Add** to add an exchange property.
+
+<br>![](/exercises/ex3/images/3_23.png)
+
+Add the details to the property as follows:
+- **Action**: Create
+- **Name**: shopify_order_id
+- **SourceType**: XPath
+- **Source Value**: //A_SalesOrder/A_SalesOrderType/PurchaseOrderByCustomer
+- **Data Type**: java.lang.String
+
+<br>![](/exercises/ex3/images/3_24.png)
+
+18. Add another exchange property with following details:
+- **Action**: Create
+- **Name**: sales_order_s4hana_id
+- **Source Type**: xpath
+- **Source Value**: //A_SalesOrder/A_SalesOrderType/SalesOrder
+- **DataType**: java.lang.String
+
+<br>![](/exercises/ex3/images/3_25.png)
+
+19. Navigate to the **message body** and select **Expression** as Type.
+
+<br>![](/exercises/ex3/images/3_26.png)
+
+And past the following to **Body**:
+```
+{
+  "query": "mutation updateS4HANACloudOrderID { metafieldsSet( metafields: { key: \"s_4hana_cloud_order_id\", ownerId: \"gid://shopify/Order/${property.shopify_order_id}\", value: \"${property.sales_order_s4hana_id}\", type: \"single_line_text_field\", namespace: \"shopifyaccelerator\" } ) { metafields { id key value } userErrors { code elementIndex field message } } }"
+}
+```
+
+<br>![](/exercises/ex3/images/3_27.png)
+
+20. Select the **call** icon form the toolbar and choose **external call>request reply**.
+
+<br>![](/exercises/ex3/images/3_28.png)
+
+And place it in integration process.
+
+<br>![](/exercises/ex3/images/3_29.png)
+
+21. Click on the **Request reply** and then the arrow and connect it to the **receiver**. Choose **Shopify adapter** from adapter pop up.
+
+<br>![](/exercises/ex3/images/3_30.png)
+
+Choose **GraphQL**.
+
+<br>![](/exercises/ex3/images/3_31.png)
+
+Go to the **Connection** tab and enter the following details:
+- **Shopify base URL**: https://sap-teched-2025.myshopify.com
+- **Shopify secure parameter**: IN160_Shopify(Created as a pre-requisite)
+
+<br>![](/exercises/ex3/images/3_32.png)
+
+22. **Save** the integration flow and **deploy** in cloud integration runtime.
+
+<br>![](/exercises/ex3/images/3_33.png)
+
+23. Go to **Monitor>Integration and APIs>Manage integration content>All**.
+
+<br>![](/exercises/ex3/images/3_34.png)
+
+And view the deployed iflow.
+
+<br>![](/exercises/ex3/images/3_35.png)
+
+# Summary
+
+You have...
+
+Continue to - Exercise 3 - Excercise 3
 
 
 
