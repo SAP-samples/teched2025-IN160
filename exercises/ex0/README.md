@@ -33,9 +33,8 @@ To get started, the first step is to configure the Shopify adapter in SAP Integr
 
 <br>![](/exercises/ex0/images/0_5.png)
 
-## 2. Publishing new order event using Event Mesh in SAP Integration Suite
 
-## Create package
+## 2. Publishing new order event using Event Mesh in SAP Integration Suite
 
 1.	Login to SAP Integration Suite and create a package: navigate to **Design>Integrations and APIs** and click **Create**.
 
