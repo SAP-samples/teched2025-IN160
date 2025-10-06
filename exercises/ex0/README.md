@@ -4,6 +4,7 @@ In this exercise, you will get an overview of the pre-requesites needed for the 
 Given the limited time during the workshop, we have completed all steps for you, nevertheless you can go through them to understand the context before moving on to the next exercises and getting your hands dirty.
 The overview includes:
 - Adapter configuration
+- Publish Shopify events in Event Mesh
 - Webhook configuration
 - Destinations setup
 - Adding security keys of Shopify and SAP S/4HANA systems
@@ -32,45 +33,173 @@ To get started, the first step is to configure the Shopify adapter in SAP Integr
 
 <br>![](/exercises/ex0/images/0_5.png)
 
-## 2. Webhook configuration
+## 2. Publishing new order event using Event Mesh in SAP Integration Suite
+
+## Create package
+
+1.	Login to SAP Integration Suite and create a package: navigate to **Design>Integrations and APIs** and click **Create**.
+
+<br>![](/exercises/ex2/images/2_2.png)
+
+2.	Provide details as follows:
+- **Name**: Shopify Order Processing UserXX (where XX is the user ID assign to you for this workshop)
+- **Technical Name**: Shopify Order Processing UserXX (where XX is the user ID assign to you for this workshop)
+- **Short Description**: Package to publish event and replicate shopify orders to S/4HANA system and S/4 HANA order id back to Shopify system.
+
+Click on **Save**.
+
+<br>![](/exercises/ex2/images/2_3.png)
+
+3. Go to the **Artifacts** tab, and select **Add>Integration Flow**.
+
+<br>![](/exercises/ex2/images/2_4.png)
+
+4. Add Integration Flow details as follows:
+- **Name**: Publish Shopify Order to EMIS User XX (replace XX with your user ID)
+- **ID**: Publish_Shopify_Order_to_EMIS_User_XX (replace XX with your user ID)
+- **Description**: Shopify triggers Integration Flow via Webhook on Order Creation. Integration Flow publishes Order to EMIS.
+
+Click on **Add**.
+
+<br>![](/exercises/ex2/images/2_5.png)
+
+5.	Now that you created your iflow, click **Edit**.
+
+<br>![](/exercises/ex2/images/2_6.png)
+
+6. Click on the **Sender** block and then on the **arrow symbol** next to it.
+
+<br>![](/exercises/ex2/images/2_7.png)
+
+7. Choose the  **Adapter Type: HTTPS**. 
+
+<br>![](/exercises/ex2/images/2_8.png)
+
+After choosing the adapter type, select the **arrow** connecting Sender and Process, and then on the three dots at the bottom of the screen. 
+
+<br>![](/exercises/ex2/images/2_9.png)
+
+8. In the **Connection** tab, enter the **Address** as: /in160/shopify/webhook/order/userXX (replace XX by your assigned user ID). And make sure **CSRF Protected** is **not** selected.
+
+<br>![](/exercises/ex2/images/2_10.png)
+
+9. Now click on the **Transformation** icon in the tool bar, and in the drop-down click the option **Script>Groovy Script**. 
+
+<br>![](/exercises/ex2/images/2_11.png)
+
+10. You should see an additional step added to the Integration Process as Groovy Script 1. Click on that step, then on the **Processing** tab and the **Select** button.
+
+<br>![](/exercises/ex2/images/2_12.png)
+
+11. Here you'll upload a local file, click **Upload from File System** and select the **“Ordermapping.groovy” script file**.
+
+<br>![](/exercises/ex2/images/2_13.png)
+
+The script will open. Read it through and click on **Apply**.
+
+<br>![](/exercises/ex2/images/2_14.png)
+
+12. Click on the **Transformation** icon and choose **Content Modifier** and place the step in the integration process, next to the Groovy Script you added earlier.
+
+<br>![](/exercises/ex2/images/2_15.png)
+
+13. Select the Content Modifier you just added, go to the **Message Header** tab and click on **Add**.
+
+<br>![](/exercises/ex2/images/2_16.png)
+
+Add the following content:
+- **Name**: content-type
+- **Source Type**: Constant
+- **Source value**: application/cloudevents+json
+
+<br>![](/exercises/ex2/images/2_17.png)
+
+14. Now, go to the **Exchange Property** tab and click **Add**.
+
+<br>![](/exercises/ex2/images/2_18.png)
+
+Add details:
+- **Name**: topic
+- **Source Type**: expression
+- **Source Value**: ${property.topic}
+
+<br>![](/exercises/ex2/images/2_19.png)
+
+15. Click on **End** (envelope icon) and drag the Arrow to the **Receiver**.
+
+<br>![](/exercises/ex2/images/2_20.png)
+
+The list of Adapter Types will appear. Choose the type **AMQP** and then **WebSocket**.
+
+<br>![](/exercises/ex2/images/2_21.png)
+
+16. Go to the **Connection** tab and **add the connection details** as follows:
+- **Host**: workshop-eu-02a-ff52646b-3869-4db9-bc8c-712e49ed1840.eu10.a.eventmesh.integration.cloud.sap
+- **Port**: 443
+- **Path**: /protocols/amqp10ws
+- **Authentication**: oAuth2ClientCredentials
+- **Credential Name**: EMIS(Already created as a pre-requisite)
+
+<br>![](/exercises/ex2/images/2_22.png)
+
+17. Navigate to the **Processing** tab: add **Destination Name: ${property.topic}** and make sure **Header Format HAndling** is set to **Passthrough**.
+    Then click **Save**. And lastly, click **Deploy**,...
+
+<br>![](/exercises/ex2/images/2_23.png)
+
+... select runtime **Cloud Integration** and click **Yes**.
+
+<br>![](/exercises/ex2/images/2_24.png)
+
+18. Navigate to **Monitor>Integration and APIs**.
+
+<br>![](/exercises/ex2/images/2_25.png)
+
+And then, click **All** in the **Manage Integration Content** section...
+
+<br>![](/exercises/ex2/images/2_26.png)
+
+... to view your successfully deployed integration flow in the list of integration content. Well done!
+
+<br>![](/exercises/ex2/images/2_27.png)
+
+
+## 3. Webhook configuration
 
 The configuration of the Webhook is necessary to...
 Again, we have already configured the webhook as part of this exercise. Refer the IN160 solution package to refer the iflow. And you can go through below steps for your understanding.
 
-1. A dummy integration flow (iflow) exposing the URL  is created in the **Solution Package IN160**.
-
-<br>![](/exercises/ex0/images/0_6.png)
-
-2.	Now, you need to create an **API provider** to the iflow deployed to cloud integration, as shown in the screenshot below. Go to **Configure>APIs>API Providers** and click **Create**.
+1.	First, you'll create an **API provider** to the iflow deployed to cloud integration, as shown in the screenshot below. Go to **Configure>APIs>API Providers** and click **Create**.
 
 <br>![](/exercises/ex0/images/0_7.png)
 
-3. As the name of the API Provider, add **CloudIntegration**.
+2. As the name of the API Provider, add **CloudIntegration**.
 
 <br>![](/exercises/ex0/images/0_8.png)
 
-4. Now, go to the **Connection** tab and provide the nexessary connection details. Add **Client ID** and **Client Secret** from the Process Integration runtime service instance. Please refer to the [help documentation](https://help.sap.com/docs/integration-suite/sap-integration-suite/create-api-provider?locale=en-US) for the setup details.
+3. Now, go to the **Connection** tab and provide the nexessary connection details. Add **Client ID** and **Client Secret** from the Process Integration runtime service instance. Please refer to the [help documentation](https://help.sap.com/docs/integration-suite/sap-integration-suite/create-api-provider?locale=en-US) for the setup details.
    Click **Save**.
 
 <br>![](/exercises/ex0/images/0_9.png)
 
-5. Create an API proxy using the API Provider. Select **API Provider** and add the name **ShopifyWebhook** and further details as shown in the image below. Then click **Create**.
+4. Create an API proxy using the API Provider. Select **API Provider** and add the following information:
+**Name**: ShopifyWebhook, **URL**: /http/in160/shopify/webhook/order/user00, and further details as shown in the image below. Then click **Create**.
       
-<br>![](/exercises/ex0/images/0_10.png)
+<br>![](/exercises/ex0/images/0_100.png)
 
-6. Next, you'll define policies for API proxy. Click on **ShopifyWebhook**, then on the three dots and **Policies**.
+5. Next, you'll define policies for API proxy. Click on **ShopifyWebhook**, then on the three dots and **Policies**.
 
 <br>![](/exercises/ex0/images/0_11.png)
 
-7. Define proxies in the **PreFlow**. Add **Key Value Map Operations** by clicking on **+** symbol next to it.
+6. Define proxies in the **PreFlow**. Add **Key Value Map Operations** by clicking on **+** symbol next to it.
 
 <br>![](/exercises/ex0/images/0_12.png)
 
-8. In the dialog, you'll define the Key Value Map Operations policy. For that, provide the **Policy Name** as **GetShopifyKey** and click on **Add**.
+7. In the dialog, you'll define the Key Value Map Operations policy. For that, provide the **Policy Name** as **GetShopifyKey** and click on **Add**.
 
 <br>![](/exercises/ex0/images/0_13.png)
 
-9. Click on **GetShopifyKey** and update the script as follows:
+8. Click on **GetShopifyKey** and update the script as follows:
 
 <br>![](/exercises/ex0/images/0_14.png)
 
@@ -94,7 +223,7 @@ Add the script for **Shopify Key** as follows:
 
 <br>![](/exercises/ex0/images/0_15.png)
 
-10. Add extension policy, click on **Python Script**.
+9. Add extension policy, click on **Python Script**.
     
 <br>![](/exercises/ex0/images/0_16.png)
 
@@ -106,7 +235,7 @@ The Policy editor will appear as follows:
 
 <br>![](/exercises/ex0/images/0_18.png)
 
-11. Next, add the **checkHash** python script by clicking on new script
+10. Next, add the **checkHash** python script by clicking on new script
 
 <br>![](/exercises/ex0/images/0_19.png)
 
@@ -119,7 +248,7 @@ And click **Add**.
 <br>![](/exercises/ex0/images/0_20.png)
 
 
-12. Provide **Script Resource** by pasting the following in the section:
+11. Provide **Script Resource** by pasting the following in the section:
 ```
 import hashlib
 import hmac
@@ -160,7 +289,7 @@ if (doubleResultHash != doubleWebhookHash):
 <br>![](/exercises/ex0/images/0_21_2.png)
 
 
-13. Go to **ProxyEndpoint>PreFlow**, click on **checkHash** policy, point the resource in the xml to the python script created earlier.
+12. Go to **ProxyEndpoint>PreFlow**, click on **checkHash** policy, point the resource in the xml to the python script created earlier.
 
 <br>![](/exercises/ex0/images/0_23.png)
 
@@ -179,15 +308,15 @@ The updated script in the **checkHash** policy will be as follows:
 
 Click on **Update** in the top right corner.
 
-14. Now, click on **Save** and then **Deploy** to deploy the API Proxy.
+13. Now, click on **Save** and then **Deploy** to deploy the API Proxy.
 
 <br>![](/exercises/ex0/images/0_25.png)
 
-15. Go to the Shopify system and add the reference to the webhook proxy just deployed. Click **Settings** on the lower left corner, then navigate to **Notifications** and click on Webhooks.
+14. Go to the Shopify system and add the reference to the webhook proxy just deployed. Click **Settings** on the lower left corner, then navigate to **Notifications** and click on Webhooks.
 
 <br>![](/exercises/ex0/images/0_27.png)
 
-16. Click on **Create webhook**.
+15. Click on **Create webhook**.
 
 <br>![](/exercises/ex0/images/0_28.png)
 
@@ -201,9 +330,10 @@ Click on **Save** and you're done!
 
 <br>![](/exercises/ex0/images/0_30.png)
 
+
 ## Summary
 
 Now that you have ... 
 Continue to - [Exercise 1 - Exercise 1 Description](../ex1/README.md)
 
-<br>![](/exercises/ex2/images/2_2.png)
+
