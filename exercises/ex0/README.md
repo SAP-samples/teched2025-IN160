@@ -205,3 +205,5 @@ Click on **Save** and you're done!
 
 Now that you have ... 
 Continue to - [Exercise 1 - Exercise 1 Description](../ex1/README.md)
+
+<br>![](/exercises/ex2/images/2_2.png)
