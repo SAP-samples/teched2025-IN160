@@ -228,13 +228,19 @@ This is what it should look like as a result. Click on **Next** to proceed and c
 Here are a couple of values, which you can enter, that should trigger the iFlow:
 
 •	order_number: 12129708540288
+
 •	confirmation_number: HZM0CMI4X
+
 •	currency: EUR
+
 •	customer: 
+
       o	first_name: Jannis
       o	last_name: user00
       o	email: jannis.maier@sap.com
+      
 •	shipping_address: 
+
       o	first_name: Jannis
       o	last_name: user00
       o	address1: 123, Dietmar-Hopp-Allee
@@ -242,7 +248,9 @@ Here are a couple of values, which you can enter, that should trigger the iFlow:
       o	city: Walldorf
       o	zip: 69190
       o	country: DE
+      
 •	line_items:
+
       o	sku: MZ-TG-B107
       o	quantity: 1
       o	price: 455.00
