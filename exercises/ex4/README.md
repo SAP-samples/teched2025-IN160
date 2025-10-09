@@ -220,7 +220,57 @@ This is what it should look like as a result. Click on **Next** to proceed and c
 
 <br>![](/exercises/ex4/Images/4_31.png)
 
-Now after you have tested your Action Project, you can click on **Save** and then on **Release**.
+Here are a couple of values, which you can enter, that should trigger the iFlow:
+
+•	order_number: 12129708540288
+•	confirmation_number: HZM0CMI4X
+•	currency: EUR
+•	customer: 
+      o	first_name: Jannis
+      o	last_name: user00
+      o	email: jannis.maier@sap.com
+•	shipping_address: 
+      o	first_name: Jannis
+      o	last_name: user00
+      o	address1: 123, Dietmar-Hopp-Allee
+      o	address2: Walldorf
+      o	city: Walldorf
+      o	zip: 69190
+      o	country: DE
+•	line_items:
+      o	sku: MZ-TG-B107
+      o	quantity: 1
+      o	price: 455.00
+      o	name: Google Pixel 9a
+
+
+Click on **Test** to start the API-Call
+
+<br>![](/exercises/ex4/Images/X13.png)
+
+As a result, you should receive the message **201: Created.** Under the tab **Response** you can navigate to the API and click on the Body. This is the output coming from the iFlow in SAP Integration Suite. Click on **Generate Output.**
+
+<br>![](/exercises/ex4/Images/X14.png)
+
+This will make sure, that your new Action will expect and save the Output from Integration Suite as a variable. Click on **Add Output.** You can see the updates now under the tab **Output.**
+
+<br>![](/exercises/ex4/Images/X15.png)
+
+To validate that the iFlow ran succesfully search for the **value** that you have received as a response from Integration Suite. This is the new order ID that has been replicated to the **SAP S/4HANA** system.
+   
+Then login to the SAP S/4HANA Cloud instance via this link: https://my427029.s4hana.cloud.sap/ui
+Login with the credentials that have been granted to you by the instructors. Open the transaction **VA01 – Display Sales Orders.** Once the app has been opened, search for the Order ID that you have copied in the previous step.
+
+<br>![](/exercises/ex4/Images/X36.png)
+ 
+
+Here you can see that your order has been successfully replicated to **SAP S/4HANA** with all the data from your order that you created initially in Shopify.
+
+<br>![](/exercises/ex4/Images/X37.png)
+
+
+
+After checking on the order in S/4, navigate back to the Action Builder. Now after you have tested your Action Project, you can click on **Save** and then on **Release**.
 
 <br>![](/exercises/ex4/Images/4_32.png)
 
@@ -231,7 +281,95 @@ Now after you have tested your Action Project, you can click on **Save** and the
 
 ## Add the Action to your process in SAP Build
 
-tbd
+1. In this part of the Hands-On, you will now add the newly created Action to your process logic. This will result, that everytime you approve the sales order, the iFlow will be triggered to replicate the order in **SAP S/4HANA** and change the order status in **Shopify.**  For this, you need to get back to your project and open the Process Builder. Under the Approve-Path of the approval step, click on the **Plus-Button** and select **Action.**
+   
+<br>![](/exercises/ex4/Images/X16.png)
+
+ 
+Now select the Action that you have created previously, select your project by checking your username in the Project-ID. Click on **Add.**
+
+<br>![](/exercises/ex4/Images/X17.png)
+
+
+To properly connect to the Integration Suite Runtime destination in our subaccount simply add a new **Destination Variable** to your Action.
+
+<br>![](/exercises/ex4/Images/X18.png)
+
+
+Add the name **IntegrationSuite** as the identifier and click on the **Create** button.
+
+<br>![](/exercises/ex4/Images/X19.png)
+
+
+Now, like you did with the approval step, assign all the Process Input Variables to the variables inside the Action as you can see in the screenshot. For **customer** and **shipping_adress** select Single properties. For **Line Items** select Bind List. You can skip the **adress2** variable.
+
+<br>![](/exercises/ex4/Images/X20.png)
+
+
+2. Now once you have finalized your process in SAP Build click on **Release** on the top-right side to get it ready for deployment.
+
+<br>![](/exercises/ex4/Images/X25.png)
+
+ 
+Once released, click on the **Deploy** button and select the **public environment.**
+
+<br>![](/exercises/ex4/Images/X26.png)
+
+
+In the next step you need map your destination variable to the actual destination in the BTP Subaccount. The name of this destination is **RunTimeDestination.** Click on **Deploy** next
+
+<br>![](/exercises/ex4/Images/X27.png)
+
+ 
+
+## Test your process:
+
+1. Now after you have deployed your process we can test it directly. In order to do so, simply create a new sales order in Shopify as you already did in the previous exercise. Once you have done that you can navigate to the **Monitoring** tab of the SAP Build Lobby. In order to simplify your search you can select for your process under the project-filter. Your process should be in the status **Running** because the order has not yet been approved by you.
+   
+<br>![](/exercises/ex4/Images/X28.png)
+
+
+By clicking on this process instance you can see all the ongoing steps. Right now your process should be stuck because the order has not yet been approved by you. This means a new task is available in your inbox.
+
+<br>![](/exercises/ex4/Images/X29.png)
+
+
+To look for your task click on the inbox button on the top-right of the SAP Build Lobby.
+
+<br>![](/exercises/ex4/Images/X30.png)
+
+
+Here, a new task should be populated with all the details on the order that you have created. Review the data and click on **Approve.**
+
+<br>![](/exercises/ex4/Images/X31.png)
+
+ 
+Now, go back to the Monitoring application and search again for your projects. Make sure that select the status **Completed,** because your process should have ended.
+
+<br>![](/exercises/ex4/Images/X32.png)
+
+
+You can see that all the process steps that you have configured int the Build development environment have been completed, this includes the Action Project to trigger the iFlow inside SAP Integration Suite. That means that the iFlow also replicated the order in **SAP S/4HANA** and updated the order in **Shopify.**
+
+<br>![](/exercises/ex4/Images/X34.png)
+
+ 
+
+2. To validate the process completion please reach out to one of the instuctors of the exercise and ask for the admin view of your created order. There you will see that a new ID from the **SAP S/4HANA** system has been added. Please copy that Order ID.
+   
+<br>![](/exercises/ex4/Images/X35.png)
+
+ 
+Now login to the SAP S/4HANA Cloud instance via this link: https://my427029.s4hana.cloud.sap/ui
+Login with the credentials that have been granted to you by the instructors. Open the transaction **VA01 – Display Sales Orders.** Once the app has been opened, search for the Order ID that you have copied in the previous step.
+
+<br>![](/exercises/ex4/Images/X36.png)
+ 
+
+Here you can see that your order has been successfully replicated to **SAP S/4HANA** with all the data from your order that you created initially in Shopify.
+
+<br>![](/exercises/ex4/Images/X37.png)
+
 
 
 
