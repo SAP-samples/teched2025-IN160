@@ -132,8 +132,6 @@ Under the tab **Inputs** make sure that you map all the value from the Event-Tri
 
 
 
-<img width="468" height="502" alt="image" src="https://github.com/user-attachments/assets/9e603691-dc5e-4f95-a913-ba490658a123" />
-
 
 ## Establish a connectivity from your process in SAP Build to the iFlow in SAP Integration Suite.
 
