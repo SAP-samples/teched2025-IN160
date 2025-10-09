@@ -11,6 +11,8 @@ The process in SAP Build will be triggered by the order event configured in the 
 Beyond business applications and workspaces, SAP Build also enables you to create custom process extensions, RPA bots, and automations that help free employees from repetitive tasks. As you will see in this Hands-On, SAP Build offers an intuitive Low-Code/No-Code environment, allowing you to build extensions quickly using simple drag-and-drop functionality.
 
 
+
+
 ## 1. Establish the connectivity to the Event Mesh service
 
 1. Navigate to the [SAP Build Lobby](https://workshop-eu-02a.eu10.build.cloud.sap/lobby). The login credentials have been granted by the instructors for this Hands-On session. Within the SAP Build Lobby, **navigate** to the **Events** section.
