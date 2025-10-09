@@ -15,7 +15,12 @@ And then, click **create** to generate a new event specification.
 
 <br>![](/exercises/ex4/Images/4_3.png)
 
-Next, you'll upload the **JSON file**, which was previously downloaded in exercise 1 where you worked with the Event Mesh service. As a result, a new Event is now available in the SAP Build library, which you can reuse for your projects.
+Next, you'll upload the **JSON file**, which includes the Event specification from the previous exercise. You can also download the file from here:
+
+[Download Final_Event.json](https://raw.githubusercontent.com/SAP-samples/teched2025-IN160/refs/heads/main/resources/Final_Event.json?token=GHSAT0AAAAAADMENUR42TGUFOJXLG7P2FHM2HHSD3Q)
+
+
+As a result, a new Event is now available in the SAP Build library, which you can reuse for your projects.
 
 <br>![](/exercises/ex4/Images/4_4.png)
 
