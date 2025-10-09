@@ -11,7 +11,7 @@ Enterprise Automation is a comprehensive method for improving business processes
 
 ## The scenario
 
-You'll learn how to automate order processing for SAP and thirs-party applications. For that, you will subscribe to order creation events in Shopify and set up your iFlow to post and replicate orders in both SAP S/4HANA and Shopify. 
+You'll learn how to automate order processing for SAP and third-party applications. For that, you will subscribe to order creation events in Shopify and set up your iFlow to post and replicate orders in both SAP S/4HANA and Shopify. 
 Following, you will move on to creating a custom approval process in SAP Build. The goal of this process is to add validation and configuration steps, which will be managed through conditions and human-based approval tasks. 
 The process in SAP Build will be triggered by the order event configured in the Event Mesh service. Fortunately, Event Mesh and SAP Build integrate natively. This same native integration applies to iFlows created in SAP Integration Suite. This connection is important because, once an order has been approved, the iFlow will be triggered to post and replicate the order in both SAP S/4HANA and Shopify. 
 
