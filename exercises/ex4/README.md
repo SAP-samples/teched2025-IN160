@@ -68,52 +68,72 @@ You need to provide a **unique name** to your trigger: **TechED_IN160_userXX_Tri
 
 <br>![](/exercises/ex4/Images/4_14.png)
 
-4. Now you have updated your process flow. After a process instance is initiated by an event, you can define multiple activities and tasks which need to be orchestrated.
-In our scenario, we start with a simple approval form. Click on the **Plus-Button** within the Process Builder and select **Approval**.
+4. After adding the Event as a trigger you can click on the **Plus-Button** to add an additional process artifact. Here you need to click on **Control & Events.**
+   
+<br>![](/exercises/ex4/Images/X1.png)
 
-<br>![](/exercises/ex4/Images/4_15.png)
+ 
+Next select **Condition**. This will automatically add a new Condition Step into your process flow, which will occur after the Event-trigger.
 
-5. Afterwards, you have the option to either create a form by using the graphical layout designer, or you can simple use the new GenAI feature, which allows you to establish artifacts with a simple language promt. Please **copy** the following prompt into the tool:
+<br>![](/exercises/ex4/Images/X2.png)
 
-_Add an approval form with the name ,,Shopify Order Approval" and add a header at the beginning with the title ,,Please approve this order”. Add a numeric field called Order Number. Add text fields which are Currency, Confirmation Number, Customer First Name, Customer Last Name, Customer E-Mail, and a table for line-items. All values should be read only._
 
-Then, you'll **submit** your prompt to SAP Build by clicking the **Send** button, and wait a couple of seconds for the form to be generated.
 
-<br>![](/exercises/ex4/Images/4_16.png)
+Click on **Open Condition Editor** to configure the rules of this condition.
 
-6. Now go back to the Process Builder and click on the three dots of the Shopify order Approval Form and select **Open Editor**.
+<br>![](/exercises/ex4/Images/X3.png)
 
-<br>![](/exercises/ex4/images/4_17.png)
+ 
+Here you need to specify when the **If-Path** should occur and not the default path. In this case we want to proceed every time your e-mail is passed on from the Event-Trigger to make sure that we do not continue if any other e-mail is in the payload of an event. With that we make sure that we only proceed when the order was created via your user. In order to find the e-mail variable you need to click on Process Inputs, select Data, then Customer and then select email. If Process Inputs do not show up then save your project and refresh the page, that should resolve your problem. This step will also avoid that your process is going to proceed if it is triggered by other users from this Hands-On exercise. On the right side please add the **e-mail** of the your user in Shopify. Then click on **Apply.**
 
-7. In the Line-Item table we can now add additional variables, that should be displayed to the approver. The data is coming directly form the Event Mesh service.
-Add the following variables into the table view:
-- **Number**: Text Input
-- **SKU**: Text Input
-- **Quantity**: Numeric Input
-- **Price**: Text Input
+<br>![](/exercises/ex4/Images/X4.png)
 
-All items should be declared as **Read Only**. If your result looks like the screenshot below, you can click on **Save**.
+ 
 
-<br>![](/exercises/ex4/Images/4_18.png)
+5. In the If-Path of your condition, click on the **Plus-Button** and select **Approval.** That means we trigger a new Approval Task in your Inbox whenever the events triggers the process.
+   
+<br>![](/exercises/ex4/Images/X5.png)
 
-8. After you have saved you Form, please go back to the Process Builder. There you can see that the Approval form is still _red-flagged_. In order to avoid it, you need to **assign** the Subject and Recipients in the tab **General**.
-- **Subject**: Shopify Order Approval
-- **Recipients**: Your UserID
+ 
+Select **Blank Approval**, to create a new form from scratch.
 
-<br>![](/exercises/ex4/Images/4_19.png)
+<br>![](/exercises/ex4/Images/X6.png)
 
-9. As a next step, navigate to the tab **Input**. Here, you'll map the data vriables, which have been configured by the Event specification at the beginning to the labels of the approval form application:
-Map:
--	Currency to Currency
--	Customer E-Mail to Customer E-Mail
--	Customer First name to Customer First Name
--	Customer Last Name to Customer Last Name
--	Line Items as a binded List to Line Items
--	Order Number to Order Number
 
-Once you have mapped all the variables you can proceed **saving** your project.
+Give your new form the name **Shopify Order Approval** and click on **Create.**
 
-<br>![](/exercises/ex4/Images/4_20.png)
+<br>![](/exercises/ex4/Images/X7.png)
+
+ 
+Once created you can click on the three dots of your new process step and click on **Open Editor.** That will open the **Forms-Builder,** which allows you to customize your approval form.
+
+<br>![](/exercises/ex4/Images/X8.png)
+
+
+Now you need to work with the **Forms-Builder** to design the UX for the approval form. Drag&Drop the UI-Elements from the left side into the screen and add the respective names:
+
+<br>![](/exercises/ex4/Images/X99.png)
+
+
+Please declare all input fields as **Read Only** – that means that the approver cannot modify any values. At the end it should look like this:
+
+<br>![](/exercises/ex4/Images/X9.png)
+
+
+To finalize your form you need to go back to the approval form step inside the Process Builder. Under the tab **General** add the subject **Shopify Order Approval.** Under **Recipients** add your username that you have used to login to SAP Build and SAP Integration Suite.
+
+<br>![](/exercises/ex4/Images/X10.png)
+
+
+
+Under the tab **Inputs** make sure that you map all the value from the Event-Trigger to the Approval Form. You can find all the relevant variables under Process-Inputs. For the Line-Items click on the arrow-down button to make sure that you have correctly assigned Name, SKU, Price and Quantity as a **Bind List.**
+
+<br>![](/exercises/ex4/Images/X11.png)
+
+
+
+<img width="468" height="502" alt="image" src="https://github.com/user-attachments/assets/9e603691-dc5e-4f95-a913-ba490658a123" />
+
 
 ## Establish a connectivity from your process in SAP Build to the iFlow in SAP Integration Suite.
 
