@@ -135,7 +135,7 @@ Under the tab **Inputs** make sure that you map all the value from the Event-Tri
 
 <br>![](/exercises/ex4/Images/X11.png)
 
-
+Don't forget to save your project!
 
 
 ## Establish a connectivity from your process in SAP Build to the iFlow in SAP Integration Suite.
