@@ -33,8 +33,69 @@ To get started, the first step is to configure the Shopify adapter in SAP Integr
 
 <br>![](/exercises/ex0/images/0_5.png)
 
+## 2. Add security keys of Shopify in Cloud Integration System
 
-## 2. Publishing new order event using Event Mesh in SAP Integration Suite
+1. Log in to your Shopify system and go to **Settings**.
+
+<br>![](/exercises/ex0/images/0_31.png)
+
+2.	Go to **Apps and sales channels**.
+
+<br>![](/exercises/ex0/images/0_32.png)
+
+3.	Click the **Develop apps** button.
+
+<br>![](/exercises/ex0/images/0_33.png)
+
+4.	Click on **Allow legacy custom app development**.
+
+<br>![](/exercises/ex0/images/0_34.png)
+
+5.	Click **Allow custom app development**.
+
+<br>![](/exercises/ex0/images/0_35.png)
+
+6.	Click on **Create a legacy custom app**.
+
+<br>![](/exercises/ex0/images/0_36.png)
+
+7.	**Enter** app details, then click **Create app**.
+
+<br>![](/exercises/ex0/images/0_37.png)
+
+8. Go to the **Configuration** tab, **select** all boxes to assign roles, and click on **Save**.
+
+<br>![](/exercises/ex0/images/0_38.png)
+
+9. Go to the **API credentials** tab, then click **Install app**.
+
+<br>![](/exercises/ex0/images/0_39.png)
+
+10. In the dialog, click on **Install**.
+
+<br>![](/exercises/ex0/images/0_40.png)
+
+11. **Reveal** the admin API access token, and copy it in your notepad.
+
+<br>![](/exercises/ex0/images/0_41.png)
+
+12. Go to your provided cloud integration tenant. Click on **Monitor>Integration and APIs**.
+
+<br>![](/exercises/ex0/images/0_42.png)
+
+13. Go to **security material**.
+
+<br>![](/exercises/ex0/images/0_43.png)
+
+14. Click **Create>Secure parameter**.
+
+<br>![](/exercises/ex0/images/0_44.png)
+
+15. Enter **name**, **description** and the **shopify key** you copied in the previous step, and click on **Deploy**.
+
+<br>![](/exercises/ex0/images/0_45.png)
+
+## 3. Publishing new order event using Event Mesh in SAP Integration Suite
 
 1.	Login to SAP Integration Suite and create a package: navigate to **Design>Integrations and APIs** and click **Create**.
 
