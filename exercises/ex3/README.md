@@ -1,11 +1,34 @@
 # Replicate approved sales order to Shopify and SAP S/4HANA 
 In this exercise...
 
-## Create integration flow
-You can copy the already created integration flow **IN160 - Replicate Sales Order to S4 and Shopify** with your user ID suffixed as name from the [Solution package](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/design/contentpackage/IN160SolutionPackage?section=ARTIFACTS).
+## Create package
 
-Alternatively, follow the steps below:
-1.	Create a new integration flow with the following details:
+1. Login to the SAP Integration Suite system and **create a package**. On the home page, **click** on the three lines on the top left hand side and go to **Integrations and APIs**. Click on **Create package**.
+
+<br>![](/exercises/ex3/images/3_36.png)
+
+2. Provide details as follows:
+- **Name**:“Shopify Order Processing User XX” (replace **XX** with your assigned user ID)
+- **Technical Name**: “Shopify Order Processing User XX” (replace **XX** with your assigned user ID)
+- **Short Description**: Package to publish event and replicate shopify orders to S/4HANA system and S/4 HANA Order ID back to Shopify system.
+
+Click **Save**.
+
+<br>![](/exercises/ex3/images/3_37.png)
+
+
+**Note**: You can copy the already created integration flow **IN160 - Replicate Sales Order to S4 and Shopify** with your user ID suffixed as name from the [Solution package](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/design/contentpackage/IN160SolutionPackage?section=ARTIFACTS). Please choose the package you just created while copying.
+
+Alternatively, follow the next steps.
+
+
+## Create integration flow
+
+1. Go to **Artifacts>Add>Integration flow**. 
+
+<br>![](/exercises/ex3/images/3_38.png)
+
+2. Create a new integration flow with the following details:
 - **Name**: Replicate Sales order to S4 and Shopify UserXX (where XX should be replaced by the user ID provided to you for the workshop)
 - **Description**: Replicate approved Sales order from SAP Build to S/4HANA system. Further,replicate the generated S/4 ID to Shopify.
 
