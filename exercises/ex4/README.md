@@ -1,4 +1,4 @@
-# Build a custom approval process in SAP Build 
+# 4. Build a custom approval process in SAP Build 
 
 
 In the first two sections, you successfully subscribed to order creation events in Shopify and set up your iFlow to post and replicate orders in both SAP S/4HANA and Shopify.
@@ -7,10 +7,7 @@ The process in SAP Build will be triggered by the order event configured in the 
 
 <br>![](/exercises/ex4/Images/X100.png)
 
- 
 Beyond business applications and workspaces, SAP Build also enables you to create custom process extensions, RPA bots, and automations that help free employees from repetitive tasks. As you will see in this Hands-On, SAP Build offers an intuitive Low-Code/No-Code environment, allowing you to build extensions quickly using simple drag-and-drop functionality.
-
-
 
 
 ## 1. Establish the connectivity to the Event Mesh service
@@ -396,6 +393,7 @@ Here you can see that your order has been successfully replicated to **SAP S/4HA
 <br>![](/exercises/ex4/Images/X37.png)
 
 
+# Summary
 
 
 
