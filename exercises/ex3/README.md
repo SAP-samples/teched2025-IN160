@@ -1,4 +1,4 @@
-# Replicate approved sales order to Shopify and SAP S/4HANA 
+# 2. Replicate approved sales order to Shopify and SAP S/4HANA 
 In this exercise...
 
 ## Create package
