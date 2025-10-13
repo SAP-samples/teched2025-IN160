@@ -1,4 +1,4 @@
-# Exercise 0: Get ready
+# 0. Get ready
 
 In this exercise, you will get an overview of the pre-requesites needed for the configuration and setup of essencial system requirements for the automated order processing scenario. 
 Given the limited time during the workshop, we have completed all steps for you, nevertheless you can go through them to understand the context before moving on to the next exercises and getting your hands dirty.
@@ -393,4 +393,4 @@ Click on **Save** and you're done!
 
 # Summary
 
-Now that you have an overview of the steps to set up and configure system requirements for the automated order processing scenario, continue to - [Exercise 1 - Configure Event Mesh Queues in SAP Integration Suite](../ex1/README.md).
+Now that you have an overview of the steps to set up and configure system requirements for the automated order processing scenario, continue to: [Exercise 1 - Configure Event Mesh Queues in SAP Integration Suite](../ex1/README.md).
