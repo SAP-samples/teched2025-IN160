@@ -1,13 +1,13 @@
-# Exercise 0
+# Exercise 0: Getting ready
 
 In this exercise, you will get an overview of the pre-requesites needed for the configuration and setup of essencial system requirements for the automated order processing scenario. 
 Given the limited time during the workshop, we have completed all steps for you, nevertheless you can go through them to understand the context before moving on to the next exercises and getting your hands dirty.
 The overview includes:
 - Adapter configuration
+- Adding security keys of Shopify and SAP S/4HANA systems
 - Publish Shopify events in Event Mesh
 - Webhook configuration
 - Destinations setup
-- Adding security keys of Shopify and SAP S/4HANA systems
 
 ## 1. Adapter configuration
 
