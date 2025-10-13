@@ -45,5 +45,5 @@ And click **Create**.
 
 You've now ...
 
-Continue to - [Exercise 2 - Replicate approved sales order to Shopify and SAP S/4HANA](../ex2/README.md).
+Continue to - [Exercise 2 - Replicate approved sales order to Shopify and SAP S/4HANA](../ex3/README.md).
 
