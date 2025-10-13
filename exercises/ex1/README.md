@@ -41,9 +41,9 @@ And click **Create**.
 <br>![](/exercises/ex1/images/1_6.png)
 
 
-## Summary
+# Summary
 
 You've now ...
 
-Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
+Continue to - [Exercise 2 - Replicate approved sales order to Shopify and SAP S/4HANA](../ex2/README.md).
 
