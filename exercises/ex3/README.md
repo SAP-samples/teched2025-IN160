@@ -194,7 +194,7 @@ And view the deployed iflow.
 
 You have...
 
-Continue to: [Excercise 3 - Build a custom approval process in SAP Build](exercises/ex4).
+Continue to: [Excercise 3 - Build a custom approval process in SAP Build](../ex4/README.md).
 
 
 
