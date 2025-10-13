@@ -391,9 +391,6 @@ Click on **Save** and you're done!
 <br>![](/exercises/ex0/images/0_30.png)
 
 
-## Summary
+# Summary
 
-Now that you have ... 
-Continue to - [Exercise 1 - Exercise 1 Description](../ex1/README.md)
-
-
+Now that you have an overview of the steps to set up and configure system requirements for the automated order processing scenario, continue to - [Exercise 1 - Configure Event Mesh Queues in SAP Integration Suite](../ex1/README.md).
