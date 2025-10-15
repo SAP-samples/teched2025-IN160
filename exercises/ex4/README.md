@@ -1,4 +1,4 @@
-# 4. Build a custom approval process in SAP Build 
+# 3. Build a custom approval process in SAP Build 
 
 
 In the first two sections, you successfully subscribed to order creation events in Shopify and set up your iFlow to post and replicate orders in both SAP S/4HANA and Shopify.
