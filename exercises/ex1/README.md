@@ -1,49 +1,112 @@
 # 1. Configure Event Mesh Queues in SAP Integration Suite 
 
-In this exercise, you'll configure Event Mesh queues in SAP Integration Suite and create a conenction to the webhook. Queues are endpoints configured with topic subscriptions that can publish and consume messages.
+In this exercise, you'll create message queues using the Event Mesh capability of SAP Integration Suite. These queues persist messages until they are consumed by the subscribed application.
+A message queue can subscribe to multiple topics, determining which events are delivered to the queue.
 
-## Configuration
+<br>![](../ex0/images/eventHandling.png)
 
-In the interest of time we have already configured the message client for you. To understand how this step is done, review the [help documentation](https://help.sap.com/docs/integration-suite/sap-integration-suite/configure-message-client?locale=en-US).
+1. In the previous section, you were introduced to a generic Integration Flow that publishes incoming order events to dynamic topics, based on the userID from Shopify order.
+2. In this exercise, you will create a message queue and add a topic subscription for Shopify orders. 
+3. To test the setup, you will create an order in Shopify and verify if the message is successfully delivered to your message queue. 
+
+
+
+## 1.1 Create a message queue and topic subscription
+
+
+>The message client is already setup in this tenant. To understand how this step is done, review the [help documentation](https://help.sap.com/docs/integration-suite/sap-integration-suite/>configure-message-client?locale=en-US).
 
 1.	In SAP Integration Suite, navigate to **Configure>Event Mesh**.
 
-<br>![](/exercises/ex1/images/1_1.png)
+<br>![](./images/1_1.png)
 
-2. Click on **Message Client: IN160**.
+2. Click on **Message Client** "IN160".
 
-<br>![](/exercises/ex1/images/1_2.png)
+<br>![](./images/1_2.png)
 
 4. Navigate to the **Queues** tab and click on **Create**.
 
-<br>![](/exercises/ex1/images/1_3.png)
+<br>![](./images/1_3.png)
 
-5. In the dialog, provide the name as **UserXX**, where **XX** is the ID assign to you for the workshop. And click **Create**.
+>Please make sure to set the Max Redelivery Count to **1** as otherwise there will be infinite retries in case of failed messages
 
-<br>![](/exercises/ex1/images/1_4.png)
-
-6. Go to the **Webhook Subscriptions** tab and click on **Create**. 
-
-<br>![](/exercises/ex1/images/1_5.png)
-
-Provide webhook details as follows:
-
-- **Name**: userXX (Replace **XX** by the user ID provided during workshop)
-- **Queue name**: choose the queue that you just created
-- **Webhook URL**: https://spa-api-gateway-bpi-eu-dev.cfapps.sap.hana.ondemand.com/internal/be/v1/events
-- **Authentication**: oAuth2 Client Credentials
-- **Client ID**: Will be provided during hands on
-- **Client Secret**: Will be provided during hands on
-- **Token URL**: Will be provided during hands on
+5. In the dialog, provide following values: 
+Namespace: `in160/shopify/order`
+Name: `userXX`, where `XX` is the ID assigned to you for the workshop
+Max Redelivery Count: `1`
 
 And click **Create**.
 
-<br>![](/exercises/ex1/images/1_6.png)
+<br>![](./images/1_4.png)
+
+6. **Click** on the queue you just created.
+
+<br>![](./images/queue-list.png)
+
+7. Switch to tab **Subscriptions** and add a new topic subscription by pressing **Create**.
+
+<br>![](./images/topic-create.png)
+
+8. Provide following value for the topic subscription: `in160/shopify/order/userXX` , where `XX` is the ID assigned to you for the workshop
+<br>![](./images/topic-create2.png)
+
+You successfully created a queue and subscribed to a topic! Let's test if the configuration works. 
+
+## 1.2 Create order in Shopify
+
+1. **Open** the [Shopify webshop](https://sap-teched-2025.myshopify.com/) and enter the password provided by your instructor. 
+
+2. **Choose** a product you like and click **"Buy it now"**
+<br>![](./images/shopify-buy.png)
+
+3. On the checkout page, please provide following values: 
+
+Email or mobile phone number: *Your email address or phone number* <br>
+Country Region: `Germany` <br>
+First Name: *Your first name* <br>
+Last Name: `userXX`, where `XX` is the ID assigned to you for the workshop <br>
+Address: `Dietmar-Hopp-Alle 1` <br>
+Postal Code: `69190` <br>
+City: `Walldorf` <br>
+Credit Card Number: `1` <br>
+Expiration Date: `01/2030` <br>
+Security Code: `123` <br>
+Use shipping address as billing address: `True` <br>
+
+And press **"Pay Now"** to submit the order. 
+
+<br>![](./images/shopify-checkout.png)
+
+4. Your order should have been successfully processed. You will get a confirmation number. Please copy and save this number without the leading **'#'**, e.g. in a Notepad.  
+
+<br>![](./images/shopify-complete.png)
+
+5. Let's have a look into the SAP Integration Suite tenant. Navigate to **Monitor** and **Integrations and APIs**. Press the tile **All Artifacts** under **Monitor Message Processing**.
+
+<br>![](./images/monitor-overview.png)
+
+6. Expand the Monitoring filters by pressing the **Expand Icon** on the top left. Provide following value **confirmation_number=** and paste the confirmation number from step 4.
+Press **Enter** to apply the filter. You now should see one entry with the topic and confirmation number of your order. 
+
+<br>![](./images/monitoring-publish.png)
+
+7. Next, we can check the Event Mesh queue , by navigating to **Monitor** and **Event Mesh**. **Select** your queue from the list.
+
+<br>![](./images/monitor-overview.png)
+
+8. There should now be one message inside your queue. **Click** on it to get more details. 
+<br>![](./images/monitor-message-list.png)
+
+9. You now can view the message details including the payload.
+<br>![](./images/monitor-message-list.png)
 
 
 # Summary
 
-You've now configure queues in Event Mesh and associated them to the webhook, created a connection. These steps will allow the order event to trigger the process in SAP Build later on.
+Congratulations! You successfully finished the first exercise.
+
+You've now configured your message queue to receive order events from Shopify. We will later configure a webhook to trigger SAP Build Process Automation. 
+But next, we first continue to develop the integration flow responsible for order replication to SAP S/4HANA .
 
 Now, continue to: [Exercise 2 - Replicate approved sales order to Shopify and SAP S/4HANA](../ex3/README.md).
 
