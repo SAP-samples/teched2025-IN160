@@ -1,4 +1,4 @@
-# Replicate approved sales order to Shopify and SAP S/4HANA 
+# 2. Replicate approved sales order to Shopify and SAP S/4HANA 
 In this exercise...
 
 ## Create package
@@ -194,7 +194,7 @@ And view the deployed iflow.
 
 You have...
 
-Continue to - Exercise 3 - Excercise 3
+Continue to: [Excercise 3 - Build a custom approval process in SAP Build](../ex4/README.md).
 
 
 

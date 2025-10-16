@@ -1,6 +1,6 @@
-# Configure Event Mesh Queues in SAP Integration Suite 
+# 1. Configure Event Mesh Queues in SAP Integration Suite 
 
-In this exercise, we will create...
+In this exercise, you'll configure Event Mesh queues in SAP Integration Suite. Queues are endpoints configured with topic subscriptions that can publish and consume messages.
 
 ## Configuration
 
@@ -28,22 +28,22 @@ In the interest of time we have already configured the message client for you. T
 
 Provide webhook detailsas follows:
 
-- Name: userXX (Replace XX by the user ID provided during workshop)
-- Queue name: choose the quq that you just created
-- Webhook URL: https://spa-api-gateway-bpi-eu-dev.cfapps.sap.hana.ondemand.com/internal/be/v1/events
-- Authentication: oAuth2 Client Credentials
-- Client ID: <Will be provided during hands on>
-- Client Secret: <Will be provided during hands on>
-- Token URL:< Will be provided during hands on>
+- **Name**: userXX (Replace **XX** by the user ID provided during workshop)
+- **Queue name**: choose the quq that you just created
+- **Webhook URL**: https://spa-api-gateway-bpi-eu-dev.cfapps.sap.hana.ondemand.com/internal/be/v1/events
+- **Authentication**: oAuth2 Client Credentials
+- **Client ID**: <Will be provided during hands on>
+- **Client Secret**: <Will be provided during hands on>
+- **Token URL**:< Will be provided during hands on>
 
 And click **Create**.
 
 <br>![](/exercises/ex1/images/1_6.png)
 
 
-## Summary
+# Summary
 
 You've now ...
 
-Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
+Continue to: [Exercise 2 - Replicate approved sales order to Shopify and SAP S/4HANA](../ex3/README.md).
 
