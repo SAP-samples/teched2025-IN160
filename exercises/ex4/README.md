@@ -344,9 +344,46 @@ In the next step you need map your destination variable to the actual destinatio
 
  
 
-## Test your process:
 
-1. Now after you have deployed your process we can test it directly. In order to do so, simply create a new sales order in Shopify as you already did in the previous exercise. Once you have done that you can navigate to the **Monitoring** tab of the SAP Build Lobby. In order to simplify your search you can select for your process under the project-filter. Your process should be in the status **Running** because the order has not yet been approved by you.
+
+# 4.Test your process:
+
+## 4.1 Create a webhook from Event Mesh to your build process. 
+
+We need to trigger the created process by defining a webhook in the Event Mesh capability of SAP Integration Suite.
+1. Navigate to your SAP Integration Suite tenant
+
+1.	In SAP Integration Suite, navigate to **Configure>Event Mesh**.
+
+<br>![](/exercises/ex1/images/1_1.png)
+
+2. Click on **Message Client: IN160**.
+
+<br>![](/exercises/ex1/images/1_2.png)
+
+3. Go to the **Webhook Subscriptions** tab and click on **Create**. 
+
+<br>![](/exercises/ex1/images/1_5.png)
+
+Provide webhook details as follows (remember to remove spaces while copy-pasting):
+
+- **Name**: `userXX` (Replace **XX** by the user ID provided during workshop)
+- **Queue name**: choose the queue that you created in step 1
+- **Webhook URL**: `https://spa-api-gateway-bpi-eu-prod.cfapps.eu10.hana.ondemand.com/internal/be/v1/events`
+- **Authentication**: `oAuth2 Client Credentials`
+- **Client ID**: `sb-899a0150-8fc6-4b79-948e-9683254f2c26!b583795|xsuaa!b120249`
+- **Client Secret**: `5d84187a-1728-4c27-ae6b-1c62a6fe22b8$Y5GJG7LMK0k2y4goFdMf7M4C62as6ry9rxF0HUVTK0g=`
+- **Token URL**: `https://workshop-eu-02a.authentication.eu10.hana.ondemand.com/oauth/token`
+
+And click **Create**.
+
+<br>![](/exercises/ex1/images/1_6.png)
+
+Now you successfully created a webhook and the message in the queue will be send to SAP Build Process Automation.
+
+## 4.2 Approve Sales Order in SAP Build Process Automation
+
+ Navigate to the **Monitoring** tab of the SAP Build Lobby. In order to simplify your search you can select for your process under the project-filter. Your process should be in the status **Running** because the order has not yet been approved by you.
    
 <br>![](/exercises/ex4/Images/X28.png)
 
@@ -377,7 +414,7 @@ You can see that all the process steps that you have configured int the Build de
 
  
 
-2. To validate the process completion please reach out to one of the instuctors of the exercise and ask for the admin view of your created order. There you will see that a new ID from the **SAP S/4HANA** system has been added. Please copy that Order ID.
+To validate the process completion please reach out to one of the instuctors of the exercise and ask for the admin view of your created order. There you will see that a new ID from the **SAP S/4HANA** system has been added. Please copy that Order ID.
    
 <br>![](/exercises/ex4/Images/X35.png)
 
