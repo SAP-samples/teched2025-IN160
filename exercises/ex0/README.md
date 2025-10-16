@@ -1,30 +1,29 @@
-# Get ready (read Only)
+# Get ready (read only)
 
-In this exercise, you will get an overview of the pre-requesites needed for the configuration and setup of essencial system requirements for the automated order processing scenario.
-As these steps are only executed once per tenant, we have completed all steps for you, nevertheless you can go through them to understand the context before moving on to the next exercises and getting your hands dirty.
+In this exercise, you will get an overview of the prerequisites needed for the configuration and setup of essential system requirements for the automated order processing scenario.
+As these steps are only executed once per tenant, we have completed all steps for you. Nevertheless, you can go through them to understand the context before moving on to the next exercises and getting your hands dirty.
 
 
 This is an architecture diagram describing our use case:
 
 <br>![](./images/architectureOverview.png)
 
-1. First you have to setup your Shopify system to create API Keys and configure the Order webhook. 
+1. First you have to setup your Shopify system to create API keys and configure the order webhook. 
 <br>
-2. Webhooks in Shopify use Hash-Based Message Authentication Codes (HMAC). The API Management capability of SAP Integration Suite validates the origin of the webhooks, see https://shopify.dev/docs/apps/build/webhooks/subscribe/https. 
+2. Webhooks in Shopify use Hash-Based Message Authentication Codes (HMAC), see https://shopify.dev/docs/apps/build/webhooks/subscribe/https. The API Management capability of SAP Integration Suite validates the origin of the webhooks.
 <br>
 3. After successful validation, an Integration Flow is triggered to publish the order event to Event Mesh. 
 <br>
-4. In Event Mesh a queue is subscribed to the topic. In addtion, a webhook is configured to trigger SAP Build Process Automation.
+4. In Event Mesh, there is a queue subscribed to the topic.  The event will be stored in the queue until it is delivered via webhook to SAP Build Process Automation.
 <br>
-5. The user has to apporve or reject the Sales Order. Once approved, an Interation Flow is triggerd via an action
+5. The user has to approve or reject the Sales Order. Once approved, an Integration Flow is triggered via an action.
 <br>
-6. The Integration Flow finally creates the Sales Order in SAP S/4HANA Public Cloud. Also the order in Shopify gets updated with the SAP S/4HANA external ID to allow an easy mapping between Shopify and SAP Orders.
+6. The Integration Flow finally creates the Sales Order in SAP S/4HANA Public Cloud. Additionally, the order in Shopify gets updated with the SAP S/4HANA external ID to allow an easy mapping between Shopify and SAP Orders.
 
 
+## 1. Create API Keys in Shopify (read only)
 
-## 1. Create API Keys in Shopify  (Read Only)
-
-You need to create API Keys to execute Shopify APIs. The API credentials need to be maintained in your SAP Integration Suite tenant.
+You need to create API keys to execute Shopify APIs. The API credentials need to be maintained in your SAP Integration Suite tenant.
 
 1. Log in to your Shopify system and go to **Settings**.
 
@@ -88,9 +87,9 @@ You need to create API Keys to execute Shopify APIs. The API credentials need to
 
 
 ### 2. Create Webhook and validate HMAC header (Read Only)
-There are generally two different options for retrieving orders from Shopify. The prepackaged content uses a pull-based approach via the Shopify API to retrieve all newly created orders. However, for this hand-on exercise using webhooks is more suiteable due to the real-time data replication. 
+There are generally two different options for retrieving orders from Shopify. The prepackaged content uses a pull-based approach via the Shopify API to retrieve all newly created orders. However, for this hand-on exercise using webhooks is more suitable due to the real-time data replication. 
 <br>
-Webhooks in Shopify only support dugest-based authentication via HMAC (Hash-based Message Authentication Code), which verifies the data integrity and authenticity of a message using a secret cryptographic key and a hash function. Here is how it works::<br> 
+Webhooks in Shopify only support digest-based authentication via HMAC (Hash-based Message Authentication Code), which verifies the data integrity and authenticity of a message using a secret cryptographic key and a hash function. Here is how it works:<br> 
 
 1. **Secret Key Generation:** Shopify creates a secret key that is shared with the client.<br> 
 
@@ -99,16 +98,16 @@ Webhooks in Shopify only support dugest-based authentication via HMAC (Hash-base
 3. **Client Verification**
 The client verifies the origin of the webhook, by computing the HMAC in the same way as Shopify and compares the result with the HMAC provided in the header. 
 <br>
-SinceAs Cloud Integration does not support such digest-based authentication, we will leverage the API-Management capability to achieve this.
+Since Cloud Integration does not support such digest-based authentication, we will leverage the API-Management capability to achieve this.
 <br>
 
 ### 2.1 Get Shopify secret key for webhooks
 
-Navigate to your Shopify Tenant and open the **Settings** page. Navigate to **Notifcations** and choose **Webhook**. 
+Navigate to your Shopify Tenant and open the **Settings** page. Navigate to **Notifications** and choose **Webhook**. 
 Here you find the secret key that is used for signing the webhook. This key needs to be maintained as secret parameter in API Management capability of SAP Integration Suite. 
 <br>![](./images/webhookSecret.png)
 
-This secret key has to be maintianed in SAP Integration Suite as encrypted Key Value Map. 
+This secret key has to be maintained in SAP Integration Suite as encrypted Key Value Map. 
 Open **Configure APIs** and create a new Key Value Map. This Key Value Map will be referenced in the API Policy for HMAC validation. 
 <br>
 <br>![](./images/webhookAPIM.png)
@@ -116,7 +115,7 @@ Open **Configure APIs** and create a new Key Value Map. This Key Value Map will 
 
 ### 2.2 Create an API Proxy for HMAC validation
 
-We now create an API Proxy to validate the HMAC header provided by Shopify. After successfull validation, an Integration Flow will be triggered to publish the order in shopify to Event Mesh. Therefore, you can register Cloud Integration as an **API Provider**, see this link for more information: https://help.sap.com/docs/sap-api-management/sap-api-management-for-neo-environment/creating-api-from-sap-cloud-integration-api-provider
+We now create an API Proxy to validate the HMAC header provided by Shopify. After successful validation, an Integration Flow will be triggered to publish the order from Shopify to Event Mesh. Therefore, you can register Cloud Integration as an **API Provider**, see this link for more information: https://help.sap.com/docs/sap-api-management/sap-api-management-for-neo-environment/creating-api-from-sap-cloud-integration-api-provider
 
 1. First you have to create a new API Proxy from the Cloud Integration API Provider. You need to define the HTTP Endpoint of the Integration Flow you want to call. The creation of the integration flow is explained in the next section.
       
@@ -250,7 +249,7 @@ Click on **Update** in the top right corner.
 
 ### 2.3 Create Shopify Webhook on Order Creation
 
-1. Go to the your Shopify system and create a webhook which calls the API Proxy URL created in the step before. Click **Settings** on the lower left corner, then navigate to **Notifications** and click on Webhooks.
+1. Open your Shopify system and create a webhook which calls the API Proxy URL created in the step before. Click **Settings** on the lower left corner, then navigate to **Notifications** and click on Webhooks.
 
 <br>![](./images/0_27.png)
 
@@ -276,29 +275,29 @@ Now that we have configured the webhook, this section describes how to set up an
 
 <br>![](./images/eventHandling.png)
 
-1. The Integration Flow creates a dynamic topic that includes the order's `last_name` property. To make sure participants only receive events they created, you will use your user ID (e.g., userXX) as the last name when creating the order in shopify.
-2. Each participant creates a message queue to store the events until they are delivered to the target application. You will inlcude your user ID in the topic subscription to ensure that your queue only receives order events created by you.
+1. The Integration Flow creates a dynamic topic that includes the order's `last_name` property. To make sure participants only receive events they created, you will use your user ID (e.g., userXX) as the last name when creating the order in Shopify.
+2. Each participant creates a message queue to temporarily persist the events until they are delivered to the target application. You will include your user ID in the topic subscription to ensure that your queue only receives order events created by you.
 3. Later in the exercise we will create a webhook to deliver the event to SAP Build Process Automation
 
-For now let's start with the first part, the integration flow publishing the order events.
+For now, let's start with the first part, the integration flow publishing the order events.
 
 
 1.	Login to SAP Integration Suite and create a package: navigate to **Design>Integrations and APIs** and click **Create**.
 
-<br>![](/exercises/ex2/images/2_2.png)
+<br>![](../ex2/images/2_2.png)
 
 2.	Provide details as follows:
-- **Name**: Shopify Order Processing UserXX (where XX is the user ID assign to you for this workshop)
-- **Technical Name**: Shopify Order Processing UserXX (where XX is the user ID assign to you for this workshop)
+- **Name**: Shopify Order Processing
+- **Technical Name**: Shopify Order Processing 
 - **Short Description**: Package to publish event and replicate shopify orders to S/4HANA system and S/4 HANA order id back to Shopify system.
 
 Click on **Save**.
 
-<br>![](/exercises/ex2/images/2_3.png)
+<br>![](../ex2/images/2_3.png)
 
 3. Go to the **Artifacts** tab, and select **Add>Integration Flow**.
 
-<br>![](/exercises/ex2/images/2_4.png)
+<br>![](../ex2/images/2_4.png)
 
 4. Add Integration Flow details as follows:
 - **Name**: Publish Shopify Order to EMIS
@@ -307,77 +306,77 @@ Click on **Save**.
 
 Click on **Add**.
 
-<br>![](/exercises/ex2/images/2_5.png)
+<br>![](../ex2/images/2_5.png)
 
-5.	Now that you created your iflow, click **Edit**.
+5.	Now that you created your integration flow, click **Edit**.
 
-<br>![](/exercises/ex2/images/2_6.png)
+<br>![](../ex2/images/2_6.png)
 
 6. Click on the **Sender** block and then on the **arrow symbol** next to it.
 
-<br>![](/exercises/ex2/images/2_7.png)
+<br>![](../ex2/images/2_7.png)
 
 7. Choose the  **Adapter Type: HTTPS**. 
 
-<br>![](/exercises/ex2/images/2_8.png)
+<br>![](../ex2/images/2_8.png)
 
 After choosing the adapter type, select the **arrow** connecting Sender and Process, and then on the three dots at the bottom of the screen. 
 
-<br>![](/exercises/ex2/images/2_9.png)
+<br>![](../ex2/images/2_9.png)
 
 8. In the **Connection** tab, enter the **Address** as: /in160/shopify/webhook/order. And make sure **CSRF Protected** is **not** selected.
 
-<br>![](/exercises/ex2/images/2_10.png)
+<br>![](../ex2/images/2_10.png)
 
 9. Now click on the **Transformation** icon in the tool bar, and in the drop-down click the option **Script>Groovy Script**. 
 
-<br>![](/exercises/ex2/images/2_11.png)
+<br>![](../ex2/images/2_11.png)
 
 10. You should see an additional step added to the Integration Process as Groovy Script 1. Click on that step, then on the **Processing** tab and the **Select** button.
 
-<br>![](/exercises/ex2/images/2_12.png)
+<br>![](../ex2/images/2_12.png)
 
 11. Here you'll upload a local file, click **Upload from File System** and select the **“Ordermapping.groovy” script file**.
 
-<br>![](/exercises/ex2/images/2_13.png)
+<br>![](../ex2/images/2_13.png)
 
 The script will open. Read it through and click on **Apply**.
 
-<br>![](/exercises/ex2/images/2_14.png)
+<br>![](../ex2/images/2_14.png)
 
 12. Click on the **Transformation** icon and choose **Content Modifier** and place the step in the integration process, next to the Groovy Script you added earlier.
 
-<br>![](/exercises/ex2/images/2_15.png)
+<br>![](../ex2/images/2_15.png)
 
 13. Select the Content Modifier you just added, go to the **Message Header** tab and click on **Add**.
 
-<br>![](/exercises/ex2/images/2_16.png)
+<br>![](../ex2/images/2_16.png)
 
 Add the following content:
 - **Name**: content-type
 - **Source Type**: Constant
 - **Source value**: application/cloudevents+json
 
-<br>![](/exercises/ex2/images/2_17.png)
+<br>![](../ex2/images/2_17.png)
 
 14. Now, go to the **Exchange Property** tab and click **Add**.
 
-<br>![](/exercises/ex2/images/2_18.png)
+<br>![](../ex2/images/2_18.png)
 
 Add details:
 - **Name**: topic
 - **Source Type**: expression
 - **Source Value**: ${property.topic}
 
-<br>![](/exercises/ex2/images/2_19.png)
+<br>![](../ex2/images/2_19.png)
 
 15. Click on **End** (envelope icon) and drag the Arrow to the **Receiver**.
 
-<br>![](/exercises/ex2/images/2_20.png)
+<br>![](../ex2/images/2_20.png)
 
 The list of Adapter Types will appear. Choose the type **AMQP** and then **WebSocket**.
 
-<br>![](/exercises/ex2/images/2_21.png)
+<br>![](../ex2/images/2_21.png)
 
 16. Go to the **Connection** tab and **add the connection details** as follows:
 - **Host**: workshop-eu-02a-ff52646b-3869-4db9-bc8c-712e49ed1840.eu10.a.eventmesh.integration.cloud.sap
@@ -386,28 +385,28 @@ The list of Adapter Types will appear. Choose the type **AMQP** and then **WebSo
 - **Authentication**: oAuth2ClientCredentials
 - **Credential Name**: EMIS(Already created as a pre-requisite)
 
-<br>![](/exercises/ex2/images/2_22.png)
+<br>![](../ex2/images/2_22.png)
 
-17. Navigate to the **Processing** tab: add **Destination Name: ${property.topic}** and make sure **Header Format HAndling** is set to **Passthrough**.
-    Then click **Save**. And lastly, click **Deploy**,...
+17. Navigate to the **Processing** tab: add **Destination Name: ${property.topic}** and make sure **Header Format Handling** is set to **Passthrough**.
+    Then click **Save**. And lastly, click **Deploy**, ...
 
-<br>![](/exercises/ex2/images/2_23.png)
+<br>![](../ex2/images/2_23.png)
 
 ... select runtime **Cloud Integration** and click **Yes**.
 
-<br>![](/exercises/ex2/images/2_24.png)
+<br>![](../ex2/images/2_24.png)
 
 18. Navigate to **Monitor>Integration and APIs**.
 
-<br>![](/exercises/ex2/images/2_25.png)
+<br>![](../ex2/images/2_25.png)
 
 And then, click **All** in the **Manage Integration Content** section...
 
-<br>![](/exercises/ex2/images/2_26.png)
+<br>![](../ex2/images/2_26.png)
 
 ... to view your successfully deployed integration flow in the list of integration content. Well done!
 
-<br>![](/exercises/ex2/images/2_27.png)
+<br>![](../ex2/images/2_27.png)
 
 
 ## Summary

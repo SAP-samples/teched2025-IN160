@@ -25,17 +25,10 @@ Beyond business applications and workspaces, SAP Build also enables you to creat
 
 ## Exercises
 
-Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
-
-- [Prerequisites (Read Only)](exercises/ex0/)
+- [Get started (read only)](exercises/ex0/)
 - [Exercise 1 - Configure Event Mesh Queues in SAP Integration Suite](exercises/ex1/README.md)
 - [Exercise 2 - Replicate approved sales order to Shopify and SAP S/4HANA](exercises/ex3/README.md)
 - [Excercise 3 - Build a custom approval process in SAP Build](exercises/ex4/README.md)
-
-
-**IMPORTANT**
-
-Your repo must contain the .reuse and LICENSES folder and the License section below. DO NOT REMOVE the section or folders/files. Also, remove all unused template assets(images, folders, etc) from the exercises folder. 
 
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
