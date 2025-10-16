@@ -26,15 +26,15 @@ In the interest of time we have already configured the message client for you. T
 
 <br>![](/exercises/ex1/images/1_5.png)
 
-Provide webhook details as follows:
+Provide webhook details as follows (remember to remove spaces while copy-pasting):
 
 - **Name**: userXX (Replace **XX** by the user ID provided during workshop)
 - **Queue name**: choose the queue that you just created
-- **Webhook URL**: https://spa-api-gateway-bpi-eu-dev.cfapps.sap.hana.ondemand.com/internal/be/v1/events
+- **Webhook URL**: https://spa-api-gateway-bpi-eu-prod.cfapps.eu10.hana.ondemand.com/internal/be/v1/events
 - **Authentication**: oAuth2 Client Credentials
-- **Client ID**: Will be provided during hands on
-- **Client Secret**: Will be provided during hands on
-- **Token URL**: Will be provided during hands on
+- **Client ID**: sb-899a0150-8fc6-4b79-948e-9683254f2c26!b583795|xsuaa!b120249
+- **Client Secret**: 5d84187a-1728-4c27-ae6b-1c62a6fe22b8$Y5GJG7LMK0k2y4goFdMf7M4C62as6ry9rxF0HUVTK0g=
+- **Token URL**: https://workshop-eu-02a.authentication.eu10.hana.ondemand.com/oauth/token
 
 And click **Create**.
 
