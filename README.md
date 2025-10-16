@@ -9,6 +9,10 @@ This repository contains the material for the SAP TechEd 2025 session called IN1
 This session introduces attendees to [Enterprise Automation](https://www.sap.com/products/technology-platform/enterprise-automation.html) and how SAP Integration Suite, SAP Build, and SAP Signavio work together to optimize business processes. 
 Enterprise Automation is a comprehensive method for improving business processes through the smart integration of technologies such as Robotic Process Automation (RPA), Artificial Intelligence (AI), and cloud-based platforms. It goes beyond automating individual tasks and focuses on transforming entire end-to-end processes. The goal is to increase efficiency, accuracy, and agility by enabling fully integrated interaction across systems and departments.
 
+## Shopify Integration
+When you want to integrate Shopify with SAP S/4HANA Public Cloud, you can leverage prepackaged integration content available on the [SAP Business Accelerator Hub](https://hub.sap.com/package/SAPS4HANACloudIntegrationwithShopify/overview). This prepackaged content covers the integration of the core business processes such as replication of products, prices, stock and orders. It is highly recommended to use prepackaged content whenever applicable to accelerate implementation and reduce costs.<br> 
+In this exercise, we focus on the development of a custom integration flow in combination with SAP Build. This is why we have not used a standard integration package. For custom flow development you will use the [shopify adapter](https://help.sap.com/docs/integration-suite/sap-integration-suite/shopify-receiver-adapter). 
+
 ## The scenario
 
 You'll learn how to automate order processing for SAP and third-party applications. For that, you will subscribe to order creation events in Shopify and set up your iFlow to post and replicate orders in both SAP S/4HANA and Shopify. 
@@ -23,7 +27,7 @@ Beyond business applications and workspaces, SAP Build also enables you to creat
 
 Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
 
-- [Exercise 0 - Getting ready](exercises/ex0/)
+- [Prerequisites (Read Only)](exercises/ex0/)
 - [Exercise 1 - First Exercise Description](exercises/ex1/)
     - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
     - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)

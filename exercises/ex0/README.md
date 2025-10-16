@@ -1,101 +1,287 @@
-# Exercise 0
+# Prerequisites (Read Only)
 
-In this exercise, you will get an overview of the pre-requesites needed for the configuration and setup of essencial system requirements for the automated order processing scenario. 
-Given the limited time during the workshop, we have completed all steps for you, nevertheless you can go through them to understand the context before moving on to the next exercises and getting your hands dirty.
-The overview includes:
-- Adapter configuration
-- Publish Shopify events in Event Mesh
-- Webhook configuration
-- Destinations setup
-- Adding security keys of Shopify and SAP S/4HANA systems
+In this exercise, you will get an overview of the pre-requesites needed for the configuration and setup of essencial system requirements for the automated order processing scenario.
+As these steps are only executed once per tenant, we have completed all steps for you, nevertheless you can go through them to understand the context before moving on to the next exercises and getting your hands dirty.
 
-## 1. Adapter configuration
 
-To get started, the first step is to configure the Shopify adapter in SAP Integration Suite. Please note that we have already deployed the adapter in your tenant as part of this exercise. You can go through the below steps if you would like to deploy a non-SAP adater in your own tenants.
+This is an architecture diagram describing our use case:
 
-1.	Go to **Discover>Integrations** and search for Shopify. Select the **Shopify Adapter for SAP Integration Suite**.
+<br>![](./images/architectureOverview.png)
 
-<br>![](/exercises/ex0/images/0_1.png)
+1. First you have to setup your Shopify system to create API Keys and configure the Order webhook. 
+<br>
+2. Webhooks in Shopify use Hash-Based Message Authentication Codes (HMAC). The API Management capability of SAP Integration Suite validates the origin of the webhooks, see https://shopify.dev/docs/apps/build/webhooks/subscribe/https. 
+<br>
+3. After successful validation, an Integration Flow is triggered to publish the order event to Event Mesh. 
+<br>
+4. In Event Mesh a queue is subscribed to the topic. In addtion, a webhook is configured to trigger SAP Build Process Automation.
+<br>
+5. The user has to apporve or reject the Sales Order. Once approved, an Interation Flow is triggerd via an action
+<br>
+6. The Integration Flow finally creates the Sales Order in SAP S/4HANA Public Cloud. Also the order in Shopify gets updated with the SAP S/4HANA external ID to allow an easy mapping between Shopify and SAP Orders.
 
-2. In the **Overview** tab you can see the details of the Adapter including a description, ID, supported category, etc. Here, click **Copy** to copy the Adapter into your workspace.
 
-<br>![](/exercises/ex0/images/0_2.png)
 
-3. Navigate back to **Design>Integrations and APIs**,search for Shopify and you should see the copied adapter in your workspace.
+## 1. Create API Keys in Shopify  (Read Only)
 
-<br>![](/exercises/ex0/images/0_3.png)
-
-4. Now, it's time to deploy the Adapter. Click on the Adapter, go to the **Artifacts** tab, click the three dots and select **Deploy** in the menu.
-
-<br>![](/exercises/ex0/images/0_4.png)
-
-5. For the runtime profile, select **Cloud Integration** and click **Yes**. You're done configuring the Shopify Adapter in SAP Integration Suite.
-
-<br>![](/exercises/ex0/images/0_5.png)
-
-## 2. Add security keys of Shopify in Cloud Integration System
+You need to create API Keys to execute Shopify APIs. The API credentials need to be maintained in your SAP Integration Suite tenant.
 
 1. Log in to your Shopify system and go to **Settings**.
 
-<br>![](/exercises/ex0/images/0_31.png)
+<br>![](./images/0_31.png)
 
 2.	Go to **Apps and sales channels**.
 
-<br>![](/exercises/ex0/images/0_32.png)
+<br>![](./images/0_32.png)
 
 3.	Click the **Develop apps** button.
 
-<br>![](/exercises/ex0/images/0_33.png)
+<br>![](./images/0_33.png)
 
 4.	Click on **Allow legacy custom app development**.
 
-<br>![](/exercises/ex0/images/0_34.png)
+<br>![](./images/0_34.png)
 
 5.	Click **Allow custom app development**.
 
-<br>![](/exercises/ex0/images/0_35.png)
+<br>![](./images/0_35.png)
 
 6.	Click on **Create a legacy custom app**.
 
-<br>![](/exercises/ex0/images/0_36.png)
+<br>![](./images/0_36.png)
 
 7.	**Enter** app details, then click **Create app**.
 
-<br>![](/exercises/ex0/images/0_37.png)
+<br>![](./images/0_37.png)
 
 8. Go to the **Configuration** tab, **select** all boxes to assign roles, and click on **Save**.
 
-<br>![](/exercises/ex0/images/0_38.png)
+<br>![](./images/0_38.png)
 
 9. Go to the **API credentials** tab, then click **Install app**.
 
-<br>![](/exercises/ex0/images/0_39.png)
+<br>![](./images/0_39.png)
 
 10. In the dialog, click on **Install**.
 
-<br>![](/exercises/ex0/images/0_40.png)
+<br>![](./images/0_40.png)
 
 11. **Reveal** the admin API access token, and copy it in your notepad.
 
-<br>![](/exercises/ex0/images/0_41.png)
+<br>![](./images/0_41.png)
 
 12. Go to your provided cloud integration tenant. Click on **Monitor>Integration and APIs**.
 
-<br>![](/exercises/ex0/images/0_42.png)
+<br>![](./images/0_42.png)
 
 13. Go to **security material**.
 
-<br>![](/exercises/ex0/images/0_43.png)
+<br>![](./images/0_43.png)
 
 14. Click **Create>Secure parameter**.
 
-<br>![](/exercises/ex0/images/0_44.png)
+<br>![](./images/0_44.png)
 
 15. Enter **name**, **description** and the **shopify key** you copied in the previous step, and click on **Deploy**.
 
-<br>![](/exercises/ex0/images/0_45.png)
+<br>![](./images/0_45.png)
 
-## 3. Publishing new order event using Event Mesh in SAP Integration Suite
+
+### 2. Create Webhook and validate HMAC header (Read Only)
+There are generally two different options for retrieving orders from Shopify. The prepackaged content uses a pull-based approach via the Shopify API to retrieve all newly created orders. However, for this hand-on exercise using webhooks is more suiteable due to the real-time data replication. 
+<br>
+Webhooks in Shopify only support dugest-based authentication via HMAC (Hash-based Message Authentication Code), which verifies the data integrity and authenticity of a message using a secret cryptographic key and a hash function. Here is how it works::<br> 
+
+1. **Secret Key Generation:** Shopify creates a secret key that is shared with the client.<br> 
+
+2. **HMAC Computation**: Shopify computes the HMAC using the message payload and the secret key and stores the result in the header "x-shopify-hmac-sha256". <br>
+
+3. **Client Verification**
+The client verifies the origin of the webhook, by computing the HMAC in the same way as Shopify and compares the result with the HMAC provided in the header. 
+<br>
+SinceAs Cloud Integration does not support such digest-based authentication, we will leverage the API-Management capability to achieve this.
+<br>
+
+### 2.1 Get Shopify secret key for webhooks
+
+Navigate to your Shopify Tenant and open the **Settings** page. Navigate to **Notifcations** and choose **Webhook**. 
+Here you find the secret key that is used for signing the webhook. This key needs to be maintained as secret parameter in API Management capability of SAP Integration Suite. 
+<br>![](./images/webhookSecret.png)
+
+This secret key has to be maintianed in SAP Integration Suite as encrypted Key Value Map. 
+Open **Configure APIs** and create a new Key Value Map. This Key Value Map will be referenced in the API Policy for HMAC validation. 
+<br>
+<br>![](./images/webhookAPIM.png)
+
+
+### 2.2 Create an API Proxy for HMAC validation
+
+We now create an API Proxy to validate the HMAC header provided by Shopify. After successfull validation, an Integration Flow will be triggered to publish the order in shopify to Event Mesh. Therefore, you can register Cloud Integration as an **API Provider**, see this link for more information: https://help.sap.com/docs/sap-api-management/sap-api-management-for-neo-environment/creating-api-from-sap-cloud-integration-api-provider
+
+1. First you have to create a new API Proxy from the Cloud Integration API Provider. You need to define the HTTP Endpoint of the Integration Flow you want to call. The creation of the integration flow is explained in the next section.
+      
+<br>![](./images/0_100.png)
+
+2. Next, you'll define policies for API proxy. Click on **ShopifyWebhook**, then on the three dots and **Policies**.
+
+<br>![](./images/0_11.png)
+
+3. Define proxies in the **PreFlow**. Add **Key Value Map Operations** by clicking on **+** symbol next to it. We need to retrieve the Shopify secret stored in the step before.
+
+<br>![](./images/0_12.png)
+
+4. In the dialog, you'll define the Key Value Map Operations policy. For that, provide the **Policy Name** as **GetShopifyKey** and click on **Add**.
+
+<br>![](./images/0_13.png)
+
+5. Click on **GetShopifyKey** and update the XML as follows:
+
+<br>![](./images/0_14.png)
+
+
+Add following configuration:
+```
+<!-- Key/value pairs can be stored, retrieved, and deleted from named existing maps by configuring this policy by specifying PUT, GET, or DELETE operations -->
+<!-- mapIdentifier refers to the name of the key value map -->
+<!-- Don't use Key Value Maps to store your logs as this can impact API Proxy runtime flow -->
+<KeyValueMapOperations mapIdentifier="ShopifyKey" async="true" continueOnError="false" enabled="true" xmlns="http://www.sap.com/apimgmt">
+    <Get assignTo="private.key">
+        <Key>
+            <Parameter>key</Parameter>
+        </Key>
+    </Get>
+	<!-- the scope of the key value map. Valid values are environment, organization, apiproxy and policy -->
+	<Scope>environment</Scope>
+</KeyValueMapOperations>
+```
+
+
+<br>![](./images/0_15.png)
+
+6. Next, we will add a script for validating the HMAC header. Navigate to **Extension Policies** and click on **Python Script**.
+    
+<br>![](./images/0_16.png)
+
+Provide the **Policy Name: checkHash** and click **Add**.
+
+<br>![](./images/0_17.png)
+
+The Policy editor will appear as follows:
+
+<br>![](./images/0_18.png)
+
+7. Next, add the **checkHash** python script by clicking on new script
+
+<br>![](./images/0_19.png)
+
+Then, provide details as follows:
+- Script name: validate
+- Script type: python
+- Script: create
+And click **Add**.
+
+<br>![](./images/0_20.png)
+
+
+8. Provide **Script Resource** by pasting the following in the section:
+```
+import hashlib
+import hmac
+import base64
+import random
+import string
+
+def make_digest(secret, payload):
+  hashBytes = hmac.new(secret, msg=payload, digestmod=hashlib.sha256).digest();
+  base64Hash = base64.b64encode(hashBytes);
+  return base64Hash;
+
+message = "";
+message = flow.getVariable("request.content");
+
+webhookHash = flow.getVariable("request.header.x-shopify-hmac-sha256");
+key =  flow.getVariable("private.key")
+message = str(message);
+flow.setVariable("keylog",key);
+flow.setVariable("messagelog",message);
+
+resultHash = make_digest(key, message);
+flow.setVariable("resultHash",resultHash);
+
+lettersAndDigits = string.ascii_letters + string.digits;
+randomKey = ''.join((random.choice(lettersAndDigits) for i in range(44)));
+
+flow.setVariable("randomKey",randomKey);
+doubleWebhookHash = make_digest( randomKey, webhookHash );
+doubleResultHash = make_digest( randomKey, resultHash );
+
+flow.setVariable("doubleWebhookHash",doubleWebhookHash);
+flow.setVariable("doubleResultHash",doubleResultHash);
+
+if (doubleResultHash != doubleWebhookHash):
+    raise NameError("Invalid Origin! Different HMAC.")
+```
+<br>![](./images/0_21_2.png)
+
+
+9. Go to **ProxyEndpoint>PreFlow**, click on **checkHash** policy, point the resource in the xml to the python script created earlier.
+
+<br>![](./images/0_23.png)
+
+The updated script in the **checkHash** policy will be as follows:
+```
+<!-- timelimit refers to the time limit for the execution of the policy -->
+<Script async="false" continueOnError="false" enabled="true" timeLimit="200" xmlns='http://www.sap.com/apimgmt'>
+	<!-- Include URL elements can refer to the script libraries that the main python script uses -->
+	<!-- Resource URL refers to the main script file that should be run -->
+	<ResourceURL>py://validate.py</ResourceURL>
+</Script>
+<!-- also creates two script files, myscriptmain.py and myscripthelp.py -->
+```
+
+
+
+Click on **Update** in the top right corner.
+
+10. Now, click on **Save** and then **Deploy** to deploy the API Proxy. After successful deployment, you will find the API Proxy URL.
+
+<br>![](./images/0_25.png)
+
+
+### 2.3 Create Shopify Webhook on Order Creation
+
+1. Go to the your Shopify system and create a webhook which calls the API Proxy URL created in the step before. Click **Settings** on the lower left corner, then navigate to **Notifications** and click on Webhooks.
+
+<br>![](./images/0_27.png)
+
+2. Click on **Create webhook**.
+
+<br>![](./images/0_28.png)
+
+Add webhook details:
+- Event: order creation
+- Format: JSON
+- URL: <API proxy created>
+- Webhook API version: latest
+
+3. Click on **Save** and you're done!
+
+<br>![](./images/0_30.png)
+
+
+## 3. Publish an order event to the Event Mesh capability of SAP Integration Suite (Read Only)
+
+Now that we have configured the webhook, this section describes how to set up an Integration Flow to publish order events to Event Mesh.
+
+
+<br>![](./images/eventHandling.png)
+
+1. The Integration Flow creates a dynamic topic that includes the order's `last_name` property. To make sure participants only receive events they created, you will use your user ID (e.g., userXX) as the last name when creating the order in shopify.
+2. Each participant creates a message queue to store the events until they are delivered to the target application. You will inlcude your user ID in the topic subscription to ensure that your queue only receives order events created by you.
+3. Later in the exercise we will create a webhook to deliver the event to SAP Build Process Automation
+
+For now let's start with the first part, the integration flow publishing the order events.
+
 
 1.	Login to SAP Integration Suite and create a package: navigate to **Design>Integrations and APIs** and click **Create**.
 
@@ -115,8 +301,8 @@ Click on **Save**.
 <br>![](/exercises/ex2/images/2_4.png)
 
 4. Add Integration Flow details as follows:
-- **Name**: Publish Shopify Order to EMIS User XX (replace XX with your user ID)
-- **ID**: Publish_Shopify_Order_to_EMIS_User_XX (replace XX with your user ID)
+- **Name**: Publish Shopify Order to EMIS
+- **ID**: Publish_Shopify_Order_to_EMIS
 - **Description**: Shopify triggers Integration Flow via Webhook on Order Creation. Integration Flow publishes Order to EMIS.
 
 Click on **Add**.
@@ -139,7 +325,7 @@ After choosing the adapter type, select the **arrow** connecting Sender and Proc
 
 <br>![](/exercises/ex2/images/2_9.png)
 
-8. In the **Connection** tab, enter the **Address** as: /in160/shopify/webhook/order/userXX (replace XX by your assigned user ID). And make sure **CSRF Protected** is **not** selected.
+8. In the **Connection** tab, enter the **Address** as: /in160/shopify/webhook/order. And make sure **CSRF Protected** is **not** selected.
 
 <br>![](/exercises/ex2/images/2_10.png)
 
@@ -224,176 +410,9 @@ And then, click **All** in the **Manage Integration Content** section...
 <br>![](/exercises/ex2/images/2_27.png)
 
 
-## 3. Webhook configuration
-
-The configuration of the Webhook is necessary to...
-Again, we have already configured the webhook as part of this exercise. Refer the IN160 solution package to refer the iflow. And you can go through below steps for your understanding.
-
-1.	First, you'll create an **API provider** to the iflow deployed to cloud integration, as shown in the screenshot below. Go to **Configure>APIs>API Providers** and click **Create**.
-
-<br>![](/exercises/ex0/images/0_7.png)
-
-2. As the name of the API Provider, add **CloudIntegration**.
-
-<br>![](/exercises/ex0/images/0_8.png)
-
-3. Now, go to the **Connection** tab and provide the nexessary connection details. Add **Client ID** and **Client Secret** from the Process Integration runtime service instance. Please refer to the [help documentation](https://help.sap.com/docs/integration-suite/sap-integration-suite/create-api-provider?locale=en-US) for the setup details.
-   Click **Save**.
-
-<br>![](/exercises/ex0/images/0_9.png)
-
-4. Create an API proxy using the API Provider. Select **API Provider** and add the following information:
-**Name**: ShopifyWebhook, **URL**: /http/in160/shopify/webhook/order/user00, and further details as shown in the image below. Then click **Create**.
-      
-<br>![](/exercises/ex0/images/0_100.png)
-
-5. Next, you'll define policies for API proxy. Click on **ShopifyWebhook**, then on the three dots and **Policies**.
-
-<br>![](/exercises/ex0/images/0_11.png)
-
-6. Define proxies in the **PreFlow**. Add **Key Value Map Operations** by clicking on **+** symbol next to it.
-
-<br>![](/exercises/ex0/images/0_12.png)
-
-7. In the dialog, you'll define the Key Value Map Operations policy. For that, provide the **Policy Name** as **GetShopifyKey** and click on **Add**.
-
-<br>![](/exercises/ex0/images/0_13.png)
-
-8. Click on **GetShopifyKey** and update the script as follows:
-
-<br>![](/exercises/ex0/images/0_14.png)
-
-
-Add the script for **Shopify Key** as follows:
-```
-<!-- Key/value pairs can be stored, retrieved, and deleted from named existing maps by configuring this policy by specifying PUT, GET, or DELETE operations -->
-<!-- mapIdentifier refers to the name of the key value map -->
-<!-- Don't use Key Value Maps to store your logs as this can impact API Proxy runtime flow -->
-<KeyValueMapOperations mapIdentifier="ShopifyKey" async="true" continueOnError="false" enabled="true" xmlns="http://www.sap.com/apimgmt">
-    <Get assignTo="private.key">
-        <Key>
-            <Parameter>key</Parameter>
-        </Key>
-    </Get>
-	<!-- the scope of the key value map. Valid values are environment, organization, apiproxy and policy -->
-	<Scope>environment</Scope>
-</KeyValueMapOperations>
-```
-
-
-<br>![](/exercises/ex0/images/0_15.png)
-
-9. Add extension policy, click on **Python Script**.
-    
-<br>![](/exercises/ex0/images/0_16.png)
-
-Provide the **Policy Name: checkHash** and click **Add**.
-
-<br>![](/exercises/ex0/images/0_17.png)
-
-The Policy editor will appear as follows:
-
-<br>![](/exercises/ex0/images/0_18.png)
-
-10. Next, add the **checkHash** python script by clicking on new script
-
-<br>![](/exercises/ex0/images/0_19.png)
-
-Then, provide details as follows:
-- Script name: validate
-- Script type: python
-- Script: create
-And click **Add**.
-
-<br>![](/exercises/ex0/images/0_20.png)
-
-
-11. Provide **Script Resource** by pasting the following in the section:
-```
-import hashlib
-import hmac
-import base64
-import random
-import string
-
-def make_digest(secret, payload):
-  hashBytes = hmac.new(secret, msg=payload, digestmod=hashlib.sha256).digest();
-  base64Hash = base64.b64encode(hashBytes);
-  return base64Hash;
-
-message = "";
-message = flow.getVariable("request.content");
-
-webhookHash = flow.getVariable("request.header.x-shopify-hmac-sha256");
-key =  flow.getVariable("private.key")
-message = str(message);
-flow.setVariable("keylog",key);
-flow.setVariable("messagelog",message);
-
-resultHash = make_digest(key, message);
-flow.setVariable("resultHash",resultHash);
-
-lettersAndDigits = string.ascii_letters + string.digits;
-randomKey = ''.join((random.choice(lettersAndDigits) for i in range(44)));
-
-flow.setVariable("randomKey",randomKey);
-doubleWebhookHash = make_digest( randomKey, webhookHash );
-doubleResultHash = make_digest( randomKey, resultHash );
-
-flow.setVariable("doubleWebhookHash",doubleWebhookHash);
-flow.setVariable("doubleResultHash",doubleResultHash);
-
-if (doubleResultHash != doubleWebhookHash):
-    raise NameError("Invalid Origin! Different HMAC.")
-```
-<br>![](/exercises/ex0/images/0_21_2.png)
-
-
-12. Go to **ProxyEndpoint>PreFlow**, click on **checkHash** policy, point the resource in the xml to the python script created earlier.
-
-<br>![](/exercises/ex0/images/0_23.png)
-
-The updated script in the **checkHash** policy will be as follows:
-```
-<!-- timelimit refers to the time limit for the execution of the policy -->
-<Script async="false" continueOnError="false" enabled="true" timeLimit="200" xmlns='http://www.sap.com/apimgmt'>
-	<!-- Include URL elements can refer to the script libraries that the main python script uses -->
-	<!-- Resource URL refers to the main script file that should be run -->
-	<ResourceURL>py://validate.py</ResourceURL>
-</Script>
-<!-- also creates two script files, myscriptmain.py and myscripthelp.py -->
-```
-
-
-
-Click on **Update** in the top right corner.
-
-13. Now, click on **Save** and then **Deploy** to deploy the API Proxy.
-
-<br>![](/exercises/ex0/images/0_25.png)
-
-14. Go to the Shopify system and add the reference to the webhook proxy just deployed. Click **Settings** on the lower left corner, then navigate to **Notifications** and click on Webhooks.
-
-<br>![](/exercises/ex0/images/0_27.png)
-
-15. Click on **Create webhook**.
-
-<br>![](/exercises/ex0/images/0_28.png)
-
-Add webhook details:
-- Event: order creation
-- Format: JSON
-- URL: <API proxy created>
-- Webhook API version: latest
-
-Click on **Save** and you're done!
-
-<br>![](/exercises/ex0/images/0_30.png)
-
-
 ## Summary
 
-Now that you have ... 
+Now that you have completed the prerequisites part. Let's get started with the exercise. 
 Continue to - [Exercise 1 - Exercise 1 Description](../ex1/README.md)
 
 
