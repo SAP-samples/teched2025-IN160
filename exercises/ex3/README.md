@@ -1,5 +1,5 @@
 # 2. Replicate approved sales order to Shopify and SAP S/4HANA 
-In this exercise...
+In this exercise you'll replicate the sales order to Shopify and the SAP S/4HANA system. For that, you'll create an integration package and integration flow in SAP Integration Suite and connect the systems. That will allow the order, once approved, to trigger the iFlow to post and replicate it in Shopify and S/4.
 
 ## Create package
 
@@ -42,7 +42,7 @@ Alternatively, follow the next steps.
 
 <br>![](/exercises/ex3/images/3_3.png)
 
-4. Int the **Connection** tab, provide the connection details:
+4. In the **Connection** tab, provide the connection details:
 - **Address**: /shopify/order/userXX (replace XX with your assigned user ID)
 - Make sure the **CSRF Protected** is **not** selected.
 
@@ -192,19 +192,7 @@ And view the deployed iflow.
 
 # Summary
 
-You have...
+You have now comleted the steps to create your integration flow in SAP Integration Suite and to create a connection that allows the approved sales order to trigger the iFlow to relicate the order to both Shopify and SAP S/4HANA.
 
 Continue to: [Excercise 3 - Build a custom approval process in SAP Build](../ex4/README.md).
-
-
-
-
-
-
-
-
-
-
-
-
 
