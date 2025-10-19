@@ -92,7 +92,7 @@ Press **Enter** to apply the filter. You now should see one entry with the topic
 
 7. Next, we can check the Event Mesh queue , by navigating to **Monitor** and **Event Mesh**. **Select** your queue from the list.
 
-<br>![](./images/monitor-overview.png)
+<br>![](./images/monitor-emis.png)
 
 8. There should now be one message inside your queue. **Click** on it to get more details. 
 <br>![](./images/monitor-message-list.png)
