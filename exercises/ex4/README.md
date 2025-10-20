@@ -126,25 +126,29 @@ Once created you can click on the three dots of your new process step and click 
 
 Now you need to work with the **Forms-Builder** to design the UX for the approval form. Drag&Drop the UI-Elements from the left side into the screen and add the respective names:
 
-<br>![](/exercises/ex4/Images/X99.png)
-
-
-Please declare all input fields as **Read Only** – that means that the approver cannot modify any values. At the end it should look like this:
-
 •	UI-Element Type: H1 - Label: Order Approval Form
+
 •	UI-Element Type: H2 - Label: Sales Order from Shopify
+
 •	UI-Element Type: Numerical Input - Label: Order Number
+
 •	UI-Element Type: Text Input - Label: Confirmation Number
+
 •	UI-Element Type: Text Input - Label: Currency
+
 •	UI-Element Type: Text Input - Label: E-Mail
+
 •	UI-Element Type: Table - Label: Line-Items
+
 o	Material-Name (Text)
 o	SKU (Text)
 o	Quantity (Number)
 o	Price (Text)
 
 
-<img width="468" height="197" alt="image" src="https://github.com/user-attachments/assets/e4fa5b9c-e6f8-4b03-a689-29d8186f1b6c" />
+
+Please declare all input fields as **Read Only** – that means that the approver cannot modify any values. At the end it should look like this:
+
 
 
 <br>![](/exercises/ex4/Images/X9.png)
