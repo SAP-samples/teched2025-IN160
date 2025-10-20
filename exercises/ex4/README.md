@@ -140,9 +140,15 @@ Now you need to work with the **Forms-Builder** to design the UX for the approva
 
 •	UI-Element Type: Table - Label: Line-Items
 
+
+Inside the table UI please configure following values:
+
 o	Material-Name (Text)
+
 o	SKU (Text)
+
 o	Quantity (Number)
+
 o	Price (Text)
 
 
