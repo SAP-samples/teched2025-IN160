@@ -162,6 +162,12 @@ Please declare all input fields as **Read Only** – that means that the approve
 
 To finalize your form you need to go back to the approval form step inside the Process Builder. Under the tab **General** add the subject **Shopify Order Approval.** Under **Recipients** add your username that you have used to login to SAP Build and SAP Integration Suite.
 
+In this case it should look like this:
+
+userXX@techedusers.com
+
+Here you need to exchange XX with your userID.
+
 <br>![](/exercises/ex4/Images/X10.png)
 
 
