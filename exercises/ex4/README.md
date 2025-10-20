@@ -28,6 +28,8 @@ Next, you'll upload the **JSON file**, which includes the Event specification fr
 
 [Download Final_Event.json](https://raw.githubusercontent.com/SAP-samples/teched2025-IN160/refs/heads/main/resources/Final_Event.json?token=GHSAT0AAAAAADMENUR42TGUFOJXLG7P2FHM2HHSD3Q)
 
+If you are unable to download the file you can also navigate to the **resources** folder and search fo the Final_Event.json file - there you can download it as well.
+
 
 As a result, a new Event is now available in the SAP Build library, which you can reuse for your projects.
 
