@@ -204,7 +204,6 @@ Now add this payload to the editor:
         "first_name": "John",
         "last_name": "Doe",
         "address1": "Dietmar-Hopp-Allee",
-        "address2": null,
         "city": "Walldorf",
         "zip": "69190",
         "country": "Germany"
