@@ -100,9 +100,9 @@ Click on **Open Condition Editor** to configure the rules of this condition.
 <br>![](/exercises/ex4/Images/X3.png)
 
  
-Here you need to specify when the **If-Path** should occur and not the default path. In this case we want to proceed every time your e-mail is passed on from the Event-Trigger to make sure that we do not continue if any other e-mail is in the payload of an event. With that we make sure that we only proceed when the order was created via your user. In order to find the e-mail variable you need to click on Process Inputs, select Data, then Customer and then select email. If Process Inputs do not show up then save your project and refresh the page, that should resolve your problem. This step will also avoid that your process is going to proceed if it is triggered by other users from this Hands-On exercise. On the right side please add the **e-mail** of the your user in Shopify. Then click on **Apply.**
+Here you need to specify when the **If-Path** should occur and not the default path. In this case we want to proceed every time your last name is passed on from the Event-Trigger to make sure that we do not continue if any other last name is in the payload of an event. With that we make sure that we only proceed when the order was created via your user. In order to find the last name variable you need to click on Process Inputs, select Data, then Customer and then select **last_name**. If Process Inputs do not show up then save your project and refresh the page, that should resolve your problem. This step will also avoid that your process is going to proceed if it is triggered by other users from this Hands-On exercise. On the right side please add the **last_name** of the your user in Shopify in this case it should be **userXX**. Then click on **Apply.**
 
-<br>![](/exercises/ex4/Images/X4.png)
+<br>![](/exercises/ex4/Images/X111.png)
 
  
 
