@@ -300,7 +300,7 @@ Here are a couple of values, which you can enter, that should trigger the iFlow:
 
 Click on **Test** to start the API-Call
 
-<br>![](/exercises/ex4/Images/X13.png)
+<br>![](/exercises/ex4/Images/X124.png)
 
 As a result, you should receive the message **201: Created.** Under the tab **Response** you can navigate to the API and click on the Body. This is the output coming from the iFlow in SAP Integration Suite. Click on **Generate Output.**
 
