@@ -277,16 +277,15 @@ Here are a couple of values, which you can enter, that should trigger the iFlow:
 
 •	customer: 
 
-      o	first_name: Jannis
+      o	first_name: John
       o	last_name: user00
-      o	email: jannis.maier@sap.com
+      o	email: john.doer@sap.com
       
 •	shipping_address: 
 
-      o	first_name: Jannis
+      o	first_name: John
       o	last_name: user00
-      o	address1: 123, Dietmar-Hopp-Allee
-      o	address2: Walldorf
+      o	address1: Dietmar-Hopp-Allee
       o	city: Walldorf
       o	zip: 69190
       o	country: DE
