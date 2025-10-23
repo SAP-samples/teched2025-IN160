@@ -448,7 +448,7 @@ You can see that all the process steps that you have configured int the Build de
 
 To validate the process completion please reach out to one of the instuctors of the exercise and ask for the admin view of your created order. There you will see that a new ID from the **SAP S/4HANA** system has been added. Please copy that Order ID.
    
-<br>![](/exercises/ex4/Images/X35.png)
+<br>![](/exercises/ex4/Images/X126.png)
 
  
 Now login to the SAP S/4HANA Cloud instance via this link: https://my427029.s4hana.cloud.sap/ui
