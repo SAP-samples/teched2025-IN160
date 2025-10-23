@@ -432,7 +432,7 @@ To look for your task click on the inbox button on the top-right of the SAP Buil
 
 Here, a new task should be populated with all the details on the order that you have created. Review the data and click on **Approve.**
 
-<br>![](/exercises/ex4/Images/X31.png)
+<br>![](/exercises/ex4/Images/X125.png)
 
  
 Now, go back to the Monitoring application and search again for your projects. Make sure that select the status **Completed,** because your process should have ended.
