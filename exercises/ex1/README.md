@@ -103,7 +103,7 @@ Press **Enter** to apply the filter. You now should see one entry with the topic
 
 ## 1.3 Create a webhook from Event Mesh
 
-We need to trigger the created process by defining a webhook in the Event Mesh capability of SAP Integration Suite.
+Let's forward the event to SAP Build Process Automation by defining a webhook in the Event Mesh capability of SAP Integration Suite.
 1. Navigate to your SAP Integration Suite tenant
 
 1.	In SAP Integration Suite, navigate to **Configure>Event Mesh**.
