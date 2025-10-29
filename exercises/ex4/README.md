@@ -265,6 +265,8 @@ This is what it should look like as a result. Click on **Next** to proceed and c
 
 4. If you like, you can also test your connectivity, by navigating to the **Test** tab. In order to properly shoot the API-Call you need to select the following Destination: **RunTimeDestination**.
 
+   Make sure that the CSRF-Token is disabled.
+
 <br>![](/exercises/ex4/Images/4_31.png)
 
 Here are a couple of values, which you can enter, that should trigger the iFlow:
