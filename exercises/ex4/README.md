@@ -423,6 +423,12 @@ To validate the process completion please reach out to one of the instuctors of 
    
 <br>![](/exercises/ex4/Images/X126.png)
 
+
+As an alternative you can also check in the Monitoring of your completed process inside the SAP Build Monitoring application, as you can see in the screenshot below:
+
+<br>![](/exercises/ex4/Images/X130.png)
+ 
+
  
 Now login to the SAP S/4HANA Cloud instance via this link: https://my427029.s4hana.cloud.sap/ui
 Login with the credentials that have been granted to you by the instructors. Open the transaction **VA01 – Display Sales Orders.** Once the app has been opened, search for the Order ID that you have copied in the previous step.
