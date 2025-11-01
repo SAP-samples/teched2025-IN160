@@ -8,16 +8,12 @@ This is an architecture diagram describing our use case:
 
 <br>![](./images/architectureOverview.png)
 
-1. First you have to setup your Shopify system to create API keys and configure the order webhook. 
-<br>
-2. Webhooks in Shopify use Hash-Based Message Authentication Codes (HMAC), see https://shopify.dev/docs/apps/build/webhooks/subscribe/https. The API Management capability of SAP Integration Suite validates the origin of the webhooks.
-<br>
+
+1. First you have to setup your Shopify system to create API keys and configure the order webhook.
+2. Webhooks in Shopify use Hash-Based Message Authentication Codes (HMAC), see [Shopify documentation](https://shopify.dev/docs/apps/build/webhooks/subscribe/https). The API Management capability of SAP Integration Suite validates the origin of the webhooks.
 3. After successful validation, an Integration Flow is triggered to publish the order event to Event Mesh. 
-<br>
 4. In Event Mesh, there is a queue subscribed to the topic.  The event will be stored in the queue until it is delivered via webhook to SAP Build Process Automation.
-<br>
 5. The user has to approve or reject the Sales Order. Once approved, an Integration Flow is triggered via an action.
-<br>
 6. The Integration Flow finally creates the Sales Order in SAP S/4HANA Public Cloud. Additionally, the order in Shopify gets updated with the SAP S/4HANA external ID to allow an easy mapping between Shopify and SAP Orders.
 
 
@@ -86,7 +82,7 @@ You need to create API keys to execute Shopify APIs. The API credentials need to
 <br>![](./images/0_45.png)
 
 
-### 2. Create Webhook and validate HMAC header (Read Only)
+### 2. Create Webhook and validate HMAC header (read only)
 There are generally two different options for retrieving orders from Shopify. The prepackaged content uses a pull-based approach via the Shopify API to retrieve all newly created orders. However, for this hand-on exercise using webhooks is more suitable due to the real-time data replication. 
 <br>
 Webhooks in Shopify only support digest-based authentication via HMAC (Hash-based Message Authentication Code), which verifies the data integrity and authenticity of a message using a secret cryptographic key and a hash function. Here is how it works:<br> 
@@ -268,7 +264,7 @@ Add webhook details:
 <br>![](./images/0_30.png)
 
 
-## 3. Publish an order event to the Event Mesh capability of SAP Integration Suite (Read Only)
+## 3. Publish an order event to the Event Mesh capability of SAP Integration Suite (read only)
 
 Now that we have configured the webhook, this section describes how to set up an Integration Flow to publish order events to Event Mesh.
 
@@ -410,6 +406,5 @@ And then, click **All** in the **Manage Integration Content** section...
 
 
 ## Summary
-
 
 Now that you have an overview of the steps to set up and configure system requirements for the automated order processing scenario, continue to: [Exercise 1 - Configure Event Mesh Queues in SAP Integration Suite](../ex1/README.md).
