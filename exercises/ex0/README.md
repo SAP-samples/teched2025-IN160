@@ -111,7 +111,7 @@ Open **Configure APIs** and create a new Key Value Map. This Key Value Map will 
 
 ### 2.2 Create an API Proxy for HMAC validation
 
-We now create an API Proxy to validate the HMAC header provided by Shopify. After successful validation, an Integration Flow will be triggered to publish the order from Shopify to Event Mesh. Therefore, you can register Cloud Integration as an **API Provider**, see this link for more information: https://help.sap.com/docs/sap-api-management/sap-api-management-for-neo-environment/creating-api-from-sap-cloud-integration-api-provider
+We now create an API Proxy to validate the HMAC header provided by Shopify. After successful validation, an Integration Flow will be triggered to publish the order from Shopify to Event Mesh. Therefore, you can register Cloud Integration as an **API Provider**, see this [link](https://help.sap.com/docs/sap-api-management/sap-api-management-for-neo-environment/creating-api-from-sap-cloud-integration-api-provider) for more information: 
 
 1. First you have to create a new API Proxy from the Cloud Integration API Provider. You need to define the HTTP Endpoint of the Integration Flow you want to call. The creation of the integration flow is explained in the next section.
       
