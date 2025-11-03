@@ -133,8 +133,7 @@ And click **Create**.
 
 <br>![](/exercises/ex1/images/1_6.png)
 
-Now you successfully created a webhook - once you have finalized the Process in exercise 3, a message will in the queue will be send to SAP Build Process Automation.
-
+Now you successfully created a webhook and send the event to SAP Build Process Automation. In exercise 3 you will create a Process which is triggered by this event.
 
 
 # Summary
@@ -142,7 +141,7 @@ Now you successfully created a webhook - once you have finalized the Process in 
 Congratulations! You successfully finished the first exercise.
 
 You've now configured your message queue to receive order events from Shopify and forward it to SAP Build Process Automation. 
-Next, we continue to develop the integration flow responsible for order replication to SAP S/4HANA .
+But before we jump to SAP Build Process Automation, we continue to develop the integration flow responsible for order replication to SAP S/4HANA .
 
 Now, continue to: [Exercise 2 - Replicate approved sales order to Shopify and SAP S/4HANA](../ex3/README.md).
 
