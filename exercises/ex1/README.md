@@ -122,6 +122,7 @@ Provide webhook details as follows (remember to remove spaces while copy-pasting
 
 - **Name**: `userXX` (Replace **XX** by the user ID provided during workshop)
 - **Queue name**: choose the queue that you created in step 1
+- **Quality of Service**: 1
 - **Webhook URL**: `https://spa-api-gateway-bpi-eu-prod.cfapps.eu10.hana.ondemand.com/internal/be/v1/events`
 - **Authentication**: `oAuth2 Client Credentials`
 - **Client ID**: `sb-899a0150-8fc6-4b79-948e-9683254f2c26!b583795|xsuaa!b120249`
