@@ -61,7 +61,7 @@ You successfully created a queue and subscribed to a topic! Let's test if the co
 
 3. On the checkout page, please provide following values: 
 
-Email or mobile phone number: *Your email address or phone number* (can be anything) <br>
+Email or mobile phone number: *Your email address or phone number* (you will receive a notification) <br>
 Country Region: `Germany` <br>
 First Name: *Your first name* <br>
 Last Name: `userXX`, where `XX` is the ID assigned to you for the workshop <br>
