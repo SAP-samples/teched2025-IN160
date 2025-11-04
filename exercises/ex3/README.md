@@ -29,6 +29,10 @@ Click **Save**.
 
 <br>![](/exercises/ex3/images/3_1.png)
 
+Open the integration flow and press **Edit** to modify the flow.
+
+<br>![](/exercises/ex3/images/editmode.png)
+
 2.	Click on **Sender** and drag the Arrow to the Start icon.
 
 <br>![](/exercises/ex3/images/3_2.png)
