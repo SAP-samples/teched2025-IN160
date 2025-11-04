@@ -17,11 +17,6 @@ Click **Save**.
 <br>![](/exercises/ex3/images/3_37.png)
 
 
->[!NOTE] 
->If you don't want to create the flow from scratch, you can copy the already created integration flow **IN160 - Replicate Sales Order to S4 and Shopify** with your user ID >suffixed as name from the [Solution package](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10->005.hana.ondemand.com/shell/design/contentpackage/IN160SolutionPackage?section=ARTIFACTS). Please choose the package you just created while copying.
->Alternatively, follow the next steps.
-
-
 ## Create integration flow
 
 1. Go to **Artifacts>Add>Integration flow**. 
