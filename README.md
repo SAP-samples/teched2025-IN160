@@ -27,9 +27,11 @@ Beyond business applications and workspaces, SAP Build also enables you to creat
 
 These are the URLs of the system we will use in the exercise. Username and password will be provided by the instructor.
 
-[SAP Integration Suite](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/home)
-[SAP Build](https://workshop-eu-02a.eu10.build.cloud.sap/lobby)
-[SAP S/4HANA Cloud](https://my427029.s4hana.cloud.sap/ui)
+- [SAP Integration Suite](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/home)
+- [SAP Build](https://workshop-eu-02a.eu10.build.cloud.sap/lobby)
+- [SAP S/4HANA Cloud](https://my427029.s4hana.cloud.sap/ui)
+
+
 
 ## Exercises
 
