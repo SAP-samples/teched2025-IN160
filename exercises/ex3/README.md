@@ -3,7 +3,7 @@ In this exercise you'll replicate the sales order to Shopify and the SAP S/4HANA
 
 ## Create package
 
-1. Login to the SAP Integration Suite system and **create a package**. On the home page, **click** on the three lines on the top left hand side and go to **Integrations and APIs**. Click on **Create package**.
+1. Open the [SAP Integration Suite tenant](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/home). On the home page, **click** on the three lines on the top left hand side and go to **Integrations and APIs**. Click on **Create package**.
 
 <br>![](/exercises/ex3/images/3_36.png)
 
@@ -48,43 +48,49 @@ Click **Save**.
 
 <br>![](/exercises/ex3/images/3_4.png)
 
-5. Click outside of the integration process box. Navigate to the **References** tab and select **Add>Mapping>Message Mapping**.
+5. Click outside of the integration process box. Navigate to the **References** tab and select **Global**, and Press **Add References>Message Mapping**.
 
-<br>![](/exercises/ex3/images/3_5.png)
+<br>![](/exercises/ex3/images/addGlobalMM.png)
 
-6. Upload the message mapping file saved in your system by clicking on **Browse**.
+6. Select the Package **IN160 - Solution Package**.
 
-<br>![](/exercises/ex3/images/3_5.png)
+<br>![](/exercises/ex3/images/MM_SelectPackage.png)
 
-The mapping files will get uploaded as follows:
+7. Select the Message Mapping **IN160 - Solution Package** and Press **OK**.
+
+<br>![](/exercises/ex3/images/MM_SelectMapping.png)
+
+The message mapping is now added as reference:
 
 <br>![](/exercises/ex3/images/3_7.png)
 
-7. Click on the **Mapping** icon in the tool bar and then choose **Message Mapping**.
+8. Create space for the flow steps and expand the integration process. Position the end step to the right.
 
-<br>![](/exercises/ex3/images/3_8.png)
+<br>![](/exercises/ex3/images/increaseWidth.png)
 
-8. Go to the **Processing** tab and click the **Select** button.
+Select the **"Start"** step and press the “**+**” button to create a new flow step.
+
+<br>![](/exercises/ex3/images/3_addStartStep.png)
+
+Choose **Message Mapping** step.
+
+<br>![](/exercises/ex3/images/addMessageMapping.png)
+
+9. Go to the **Processing** tab and click the **Select** button.
 
 <br>![](/exercises/ex3/images/3_9.png)
 
-9. in **Local Resources** select the message mapping file **shopify_to_s4hana_order_mapping_mmap** and then click **Ok**.
+10. Switch to **Global Resources**. Select the Message Mapping you just added and press **OK**.
 
 <br>![](/exercises/ex3/images/3_10.png)
 
-10. You'll see Mapping defined for you as follows:
+11. Now click on the Message Mapping step and press the **+** button to add a new flowstep.
 
-<br>![](/exercises/ex3/images/3_11.png)
+<br>![](/exercises/ex3/images/addStepMM.png)
 
-Click **Ok**.
+Select **Request Reply**.
 
-11. Now, navigate to the toolbar and select the **External call** button (double arrows),and **Request Reply**.
-
-<br>![](/exercises/ex3/images/3_12.png)
-
-And place the **Request Reply** box in the integration flow:
-
-<br>![](/exercises/ex3/images/3_13.png)
+<br>![](/exercises/ex3/images/addRequestReply.png)
 
 12. Go to the **Participants** toolbar icon and select **Receiver**.
 
@@ -113,15 +119,15 @@ Enter Resource Path: **A_SalesOrder**.
 
 <br>![](/exercises/ex3/images/3_20.png)
 
-16. Click the **Transformation** icon form  the tool bar, then **Content Modifier**.
+16. Click on the Request Reply step and press the **+** button to add a new flowstep.
 
-<br>![](/exercises/ex3/images/3_21.png)
+<br>![](/exercises/ex3/images/RequestReplyadd.png)
 
-And place the content modifier in the integration process, between the Tequest Reply and End.
+Select **Content Modifier**.
 
-<br>![](/exercises/ex3/images/3_22.png)
+<br>![](/exercises/ex3/images/createContentModifier.png)
 
-17. Click on the **content modifier**. Then navigate to **Exchange Property>Add** to add an exchange property.
+17. Click on the **Content Modifier**. Then navigate to **Exchange Property>Add** to add an exchange property.
 
 <br>![](/exercises/ex3/images/3_23.png)
 
@@ -156,13 +162,16 @@ And past the following to **Body**:
 
 <br>![](/exercises/ex3/images/3_27.png)
 
-20. Select the **call** icon form the toolbar and choose **external call>request reply**.
 
-<br>![](/exercises/ex3/images/3_28.png)
 
-And place it in integration process.
+20. Click on the Content Modifier step and press the **+** button to add a new flowstep.
 
-<br>![](/exercises/ex3/images/3_29.png)
+<br>![](/exercises/ex3/images/addStepContentModifier.png)
+
+Select **Request Reply**.
+
+<br>![](/exercises/ex3/images/createRequestReply2.png)
+
 
 21. Click on the **Request reply** and then the arrow and connect it to the **receiver**. Choose **Shopify adapter** from adapter pop up.
 
@@ -174,7 +183,7 @@ Choose **GraphQL**.
 
 Go to the **Connection** tab and enter the following details:
 - **Shopify base URL**: https://sap-teched-2025.myshopify.com
-- **Shopify secure parameter**: IN160_Shopify(Created as a pre-requisite)
+- **Shopify secure parameter**: IN160_Shopify
 
 <br>![](/exercises/ex3/images/3_32.png)
 

@@ -16,7 +16,7 @@ A message queue can subscribe to multiple topics, determining which events are d
 
 >The message client is already setup in this tenant. To understand how this step is done, review the [help documentation](https://help.sap.com/docs/integration-suite/sap-integration-suite/>configure-message-client?locale=en-US).
 
-1.	In SAP Integration Suite, navigate to **Configure>Event Mesh**.
+1.	Open the[SAP Integration Suite tenant](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/home) and navigate to **Configure>Event Mesh**.
 
 <br>![](./images/1_1.png)
 
@@ -81,7 +81,7 @@ And press **"Pay Now"** to submit the order.
 
 <br>![](./images/shopify-complete.png)
 
-5. Let's have a look into the SAP Integration Suite tenant. Navigate to **Monitor** and **Integrations and APIs**. Press the tile **All Artifacts** under **Monitor Message Processing**.
+5. Let's have a look into the [SAP Integration Suite tenant](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/home). Navigate to **Monitor** and **Integrations and APIs**. Press the tile **All Artifacts** under **Monitor Message Processing**.
 
 <br>![](./images/monitor-overview.png)
 
