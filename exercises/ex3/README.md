@@ -120,7 +120,7 @@ Enter Resource Path: **A_SalesOrder**.
 
 16. Click on the Request Reply step and press the **+** button to add a new flowstep.
 
-<br>![](/exercises/ex3/images/RequestReplyadd.png)
+<br>![](/exercises/ex3/images/RequestReplyAdd.png)
 
 Select **Content Modifier**.
 
