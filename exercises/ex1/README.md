@@ -56,8 +56,9 @@ You successfully created a queue and subscribed to a topic! Let's test if the co
 
 1. **Open** the [Shopify webshop](https://sap-teched-2025.myshopify.com/) and enter the password provided by your instructor. 
 
-2. **Choose** a product you like and click **"Buy it now"**
 
+
+2. **Choose** a product you like and click **"Buy it now"**
 
 
 
