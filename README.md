@@ -41,13 +41,6 @@ These are the URLs of the system we will use in the exercise. Username and passw
 - [Excercise 3 - Build a custom approval process in SAP Build](exercises/ex4/README.md)
 
 
-## System Access:
-
-SAP Integration Suite: https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/home
-SAp Build: https://workshop-eu-02a.eu10.build.cloud.sap/lobby
-Shopify: https://sap-teched-2025.myshopify.com/ 
-SAP S/4HANA Cloud: https://my427029.s4hana.cloud.sap/ui
-
 
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
