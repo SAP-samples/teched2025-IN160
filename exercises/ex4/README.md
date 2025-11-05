@@ -24,7 +24,7 @@ And then, click **create** to generate a new event specification.
 
 <br>![](/exercises/ex4/Images/4_3.png)
 
-Next, you'll upload the **JSON file**, which includes the Event specification from the previous exercise. You can also download the file from here (Right-click on the link and Save link as..):
+Next, you'll upload the **JSON file**, which includes the Event specification from the previous exercise. You can also download the file from here (Open it in new tab and download the file):
 
 [Download Final_Event.json](../../resources/Final_Event.json)
 
