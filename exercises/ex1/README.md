@@ -31,7 +31,7 @@ A message queue can subscribe to multiple topics, determining which events are d
 >Please make sure to set the Max Redelivery Count to **1** as otherwise there will be infinite retries in case of failed messages
 
 5. In the dialog, provide following values: 
-Namespace: `in160/shopify/order`
+Namespace: if user is between user01 to user25 then provide `in1601/shopify/order` else `in1602/shopify/order`
 Name: `userXX`, where `XX` is the ID assigned to you for the workshop
 Max Redelivery Count: `1`
 
