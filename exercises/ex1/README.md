@@ -20,7 +20,7 @@ A message queue can subscribe to multiple topics, determining which events are d
 
 <br>![](./images/1_1.png)
 
-2. Click on **Message Client** "IN160".
+2. if you user id is between user01-user25, Click on **Message Client** "IN160-01-25"  else click on "IN160-26-50".
 
 <br>![](./images/1_2.png)
 
