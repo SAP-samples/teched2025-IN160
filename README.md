@@ -30,6 +30,8 @@ These are the URLs of the system we will use in the exercise. Username and passw
 - [SAP Integration Suite](https://workshop-eu-02a.integrationsuite-cpi033.cfapps.eu10-005.hana.ondemand.com/shell/home)
 - [SAP Build](https://workshop-eu-02a.eu10.build.cloud.sap/lobby)
 - [SAP S/4HANA Cloud](https://my427029.s4hana.cloud.sap/ui)
+- [Shopify WebShop ](https://sap-teched-2025.myshopify.com/)
+
 
 
 
