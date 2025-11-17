@@ -332,7 +332,7 @@ After choosing the adapter type, select the **arrow** connecting Sender and Proc
 
 <br>![](../ex2/images/2_12.png)
 
-11. Here you'll upload a local file, click **Upload from File System** and select the **[“Ordermapping.groovy](https://github.com/SAP-samples/teched2025-IN160/blob/e0705279301d44235d0c48bc3e6b1d5f9ae967a0/resources/ordermapping.groovy)” script file**
+11. Here you'll upload a local file, click **Upload from File System** and select the **[“Ordermapping.groovy]” script file**
 
 <br>![](../ex2/images/2_13.png)
 
