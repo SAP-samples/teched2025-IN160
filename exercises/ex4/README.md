@@ -315,7 +315,7 @@ This will make sure, that your new Action will expect and save the Output from I
 To validate that the iFlow ran succesfully search for the **value** that you have received as a response from Integration Suite. This is the new order ID that has been replicated to the **SAP S/4HANA** system.
    
 Then login to the SAP S/4HANA Cloud instance via this link: https://my427029.s4hana.cloud.sap/ui
-Login with the credentials that have been granted to you by the instructors. Open the transaction **VA01 – Display Sales Orders.** Once the app has been opened, search for the Order ID that you have copied in the previous step.
+Login with the credentials that have been granted to you by the instructors. Open the transaction **VA03 – Display Sales Orders.** Once the app has been opened, search for the Order ID that you have copied in the previous step.
 
 <br>![](/exercises/ex4/Images/X36.png)
  
@@ -431,7 +431,7 @@ As an alternative you can also check in the Monitoring of your completed process
 
  
 Now login to the SAP S/4HANA Cloud instance via this link: https://my427029.s4hana.cloud.sap/ui
-Login with the credentials that have been granted to you by the instructors. Open the transaction **VA01 – Display Sales Orders.** Once the app has been opened, search for the Order ID that you have copied in the previous step.
+Login with the credentials that have been granted to you by the instructors. Open the transaction **VA03 – Display Sales Orders.** Once the app has been opened, search for the Order ID that you have copied in the previous step.
 
 <br>![](/exercises/ex4/Images/X36.png)
  
