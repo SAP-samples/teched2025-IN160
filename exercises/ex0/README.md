@@ -280,7 +280,7 @@ For now, let's start with the first part, the integration flow publishing the or
 
 1.	Login to SAP Integration Suite and create a package: navigate to **Design>Integrations and APIs** and click **Create**.
 
-<br>![](../ex2/images/2_2.png)
+<br>![](./images/2_2.png)
 
 2.	Provide details as follows:
 - **Name**: Shopify Order Processing
@@ -289,11 +289,11 @@ For now, let's start with the first part, the integration flow publishing the or
 
 Click on **Save**.
 
-<br>![](../ex2/images/2_3.png)
+<br>![](./images/2_3.png)
 
 3. Go to the **Artifacts** tab, and select **Add>Integration Flow**.
 
-<br>![](../ex2/images/2_4.png)
+<br>![](./images/2_4.png)
 
 4. Add Integration Flow details as follows:
 - **Name**: Publish Shopify Order to EMIS
@@ -302,77 +302,77 @@ Click on **Save**.
 
 Click on **Add**.
 
-<br>![](../ex2/images/2_5.png)
+<br>![](./images/2_5.png)
 
 5.	Now that you created your integration flow, click **Edit**.
 
-<br>![](../ex2/images/2_6.png)
+<br>![](./images/2_6.png)
 
 6. Click on the **Sender** block and then on the **arrow symbol** next to it.
 
-<br>![](../ex2/images/2_7.png)
+<br>![](./images/2_7.png)
 
 7. Choose the  **Adapter Type: HTTPS**. 
 
-<br>![](../ex2/images/2_8.png)
+<br>![](./images/2_8.png)
 
 After choosing the adapter type, select the **arrow** connecting Sender and Process, and then on the three dots at the bottom of the screen. 
 
-<br>![](../ex2/images/2_9.png)
+<br>![](./images/2_9.png)
 
 8. In the **Connection** tab, enter the **Address** as: /in160/shopify/webhook/order. And make sure **CSRF Protected** is **not** selected.
 
-<br>![](../ex2/images/2_10.png)
+<br>![](./images/2_10.png)
 
 9. Now click on the **Transformation** icon in the tool bar, and in the drop-down click the option **Script>Groovy Script**. 
 
-<br>![](../ex2/images/2_11.png)
+<br>![](./images/2_11.png)
 
 10. You should see an additional step added to the Integration Process as Groovy Script 1. Click on that step, then on the **Processing** tab and the **Select** button.
 
-<br>![](../ex2/images/2_12.png)
+<br>![](./images/2_12.png)
 
 11. Here you'll upload a local file, click **Upload from File System** and select the **[“[Ordermapping.groovy](https://github.com/SAP-samples/teched2025-IN160/blob/e0705279301d44235d0c48bc3e6b1d5f9ae967a0/resources/ordermapping.groovy)]” script file**
 
-<br>![](../ex2/images/2_13.png)
+<br>![](./images/2_13.png)
 
 The script will open. Read it through and click on **Apply**.
 
-<br>![](../ex2/images/2_14.png)
+<br>![](./images/2_14.png)
 
 12. Click on the **Transformation** icon and choose **Content Modifier** and place the step in the integration process, next to the Groovy Script you added earlier.
 
-<br>![](../ex2/images/2_15.png)
+<br>![](./images/2_15.png)
 
 13. Select the Content Modifier you just added, go to the **Message Header** tab and click on **Add**.
 
-<br>![](../ex2/images/2_16.png)
+<br>![](./images/2_16.png)
 
 Add the following content:
 - **Name**: content-type
 - **Source Type**: Constant
 - **Source value**: application/cloudevents+json
 
-<br>![](../ex2/images/2_17.png)
+<br>![](./images/2_17.png)
 
 14. Now, go to the **Exchange Property** tab and click **Add**.
 
-<br>![](../ex2/images/2_18.png)
+<br>![](./images/2_18.png)
 
 Add details:
 - **Name**: topic
 - **Source Type**: expression
 - **Source Value**: ${property.topic}
 
-<br>![](../ex2/images/2_19.png)
+<br>![](./images/2_19.png)
 
 15. Click on **End** (envelope icon) and drag the Arrow to the **Receiver**.
 
-<br>![](../ex2/images/2_20.png)
+<br>![](./images/2_20.png)
 
 The list of Adapter Types will appear. Choose the type **AMQP** and then **WebSocket**.
 
-<br>![](../ex2/images/2_21.png)
+<br>![](./images/2_21.png)
 
 16. Go to the **Connection** tab and **add the connection details** as follows:
 - **Host**: workshop-eu-02a-ff52646b-3869-4db9-bc8c-712e49ed1840.eu10.a.eventmesh.integration.cloud.sap
@@ -381,12 +381,12 @@ The list of Adapter Types will appear. Choose the type **AMQP** and then **WebSo
 - **Authentication**: oAuth2ClientCredentials
 - **Credential Name**: EMIS(Already created as a pre-requisite)
 
-<br>![](../ex2/images/2_22.png)
+<br>![](./images/2_22.png)
 
 17. Navigate to the **Processing** tab: add **Destination Name: ${property.topic}** and make sure **Header Format Handling** is set to **Passthrough**.
     Then click **Save**. And lastly, click **Deploy**, ...
 
-<br>![](../ex2/images/2_23.png)
+<br>![](./images/2_23.png)
 
 ... select runtime **Cloud Integration** and click **Yes**.
 
@@ -394,15 +394,15 @@ The list of Adapter Types will appear. Choose the type **AMQP** and then **WebSo
 
 18. Navigate to **Monitor>Integration and APIs**.
 
-<br>![](../ex2/images/2_25.png)
+<br>![](./images/2_25.png)
 
 And then, click **All** in the **Manage Integration Content** section...
 
-<br>![](../ex2/images/2_26.png)
+<br>![](./images/2_26.png)
 
 ... to view your successfully deployed integration flow in the list of integration content. Well done!
 
-<br>![](../ex2/images/2_27.png)
+<br>![](./images/2_27.png)
 
 
 ## Summary
