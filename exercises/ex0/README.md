@@ -271,11 +271,13 @@ Now that we have configured the webhook, this section describes how to set up an
 
 <br>![](./images/eventHandling.png)
 
-1. The Integration Flow creates a dynamic topic that includes the order's `last_name` property. To make sure participants only receive events they created, you will use your user ID (e.g., userXX) as the last name when creating the order in Shopify.
-2. Each participant creates a message queue to temporarily persist the events until they are delivered to the target application. You will include your user ID in the topic subscription to ensure that your queue only receives order events created by you.
-3. Later in the exercise we will create a webhook to deliver the event to SAP Build Process Automation
+>Information.
+>Please note that the integration flow is already created as part of this hands on.
+>1. The Integration Flow creates a dynamic topic that includes the order's `last_name` property. To make sure participants only receive events they created, you will use your >user ID (e.g., userXX) as the last name when creating the order in Shopify.
+>2. Each participant creates a message queue to temporarily persist the events until they are delivered to the target application. You will include your user ID in the topic >subscription to ensure that your queue only receives order events created by you.
+>3. Later in the exercise 1 we will create a webhook to deliver the event to SAP Build Process Automation
 
-For now, let's start with the first part, the integration flow publishing the order events.
+
 
 
 1.	Login to SAP Integration Suite and create a package: navigate to **Design>Integrations and APIs** and click **Create**.
