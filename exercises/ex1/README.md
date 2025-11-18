@@ -20,17 +20,19 @@ A message queue can subscribe to multiple topics, determining which events are d
 
 <br>![](./images/1_1.png)
 
-2. if you user id is between user01-user25, Click on **Message Client** "IN160-01-25"  else click on "IN160-26-50".
+2.Click on **Message Client**
+>[!Tip]
+>if you user id is between user01-user25, Click on **Message Client** "IN160-01-25"  else click on "IN160-26-50".
 
 <br>![](./images/1_2.png)
 
-4. Navigate to the **Queues** tab and click on **Create**.
+3. Navigate to the **Queues** tab and click on **Create**.
 
 <br>![](./images/1_3.png)
 
 >Please make sure to set the Max Redelivery Count to **1** as otherwise there will be infinite retries in case of failed messages
 
-5. In the dialog, provide following values: 
+4. In the dialog, provide following values: 
 Namespace: if user is between user01 to user25 then provide `in1601/shopify/order` else `in1602/shopify/order`
 Name: `userXX`, where `XX` is the ID assigned to you for the workshop
 Max Redelivery Count: `1`
@@ -39,15 +41,15 @@ And click **Create**.
 
 <br>![](./images/1_4.png)
 
-6. **Click** on the queue you just created.
+5. **Click** on the queue you just created.
 
 <br>![](./images/queue-list.png)
 
-7. Switch to tab **Subscriptions** and add a new topic subscription by pressing **Create**.
+6. Switch to tab **Subscriptions** and add a new topic subscription by pressing **Create**.
 
 <br>![](./images/topic-create.png)
 
-8. Provide following value for the topic subscription: `in160/shopify/order/userXX` , where `XX` is the ID assigned to you for the workshop
+7. Provide following value for the topic subscription: `in160/shopify/order/userXX` , where `XX` is the ID assigned to you for the workshop
 <br>![](./images/topic-create2.png)
 
 You successfully created a queue and subscribed to a topic! Let's test if the configuration works. 
