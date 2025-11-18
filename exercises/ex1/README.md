@@ -129,10 +129,8 @@ Let's forward the event to SAP Build Process Automation by defining a webhook in
 Provide webhook details as follows (remember to remove spaces while copy-pasting):
 
 **Name**: `userXX` (Replace **XX** by the user ID provided during workshop)
-- **Queue name**:
-  ```
-  choose the queue that you created in step 1
-  ```
+- **Queue name**:`choose the queue that you created in step 1`
+ 
 - **Quality of Service**:
   ```
    1
