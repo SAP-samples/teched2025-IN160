@@ -35,7 +35,7 @@ As a result, a new Event is now available in the SAP Build library, which you ca
 
 <br>![](/exercises/ex4/Images/4_4.png)
 
-Give your event project a **name**, ideally something that is recognizable. Start with **TechED_IN160_userXX** (replace XX with your User ID). Click **Create**.
+Give your event project a **name**, ideally something that is recognizable. Start with **TechED_IN160_WorkshopuserXX** (replace XX with your User ID). Click **Create**.
 
 <br>![](/exercises/ex4/Images/4_5.png)
 
@@ -55,7 +55,7 @@ Select **Process** and click on **Next** once again.
 
 <br>![](/exercises/ex4/Images/4_8.png)
 
-3. Give your project a name: **TechED_IN160_userXX_Process** and replace XX with your assigned user ID. After that click **Review**. Review your project details and click on **Create**.
+3. Give your project a name: **TechED_IN160_WorkshopuserXX_Process** and replace XX with your assigned user ID. After that click **Review**. Review your project details and click on **Create**.
 
 <br>![](/exercises/ex4/Images/4_9.png)
 
@@ -80,7 +80,7 @@ Then, select for **Wait for an Event**.
 
 <br>![](/exercises/ex4/Images/4_13.png)
 
-You need to provide a **unique name** to your trigger: **TechED_IN160_userXX_Trigger**, replace XX with your assigned user ID. Then click on **Create**.
+You need to provide a **unique name** to your trigger: **TechED_IN160_WorkshopuserXX_Trigger**, replace XX with your assigned user ID. Then click on **Create**.
 
 <br>![](/exercises/ex4/Images/4_14.png)
 
@@ -211,7 +211,7 @@ Afterwards click on **Create New Project**.
 
 <br>![](/exercises/ex4/Images/4_27.png)
 
-As a next step, give your project a unique name: **TechEd_IN160_userXX_Action**, replace XX with your assigned user ID. Click on the **Create** button.
+As a next step, give your project a unique name: **TechEd_IN160_WorkshopuserXX_Action**, replace XX with your assigned user ID. Click on the **Create** button.
 
 <br>![](/exercises/ex4/Images/4_28.png)
 
