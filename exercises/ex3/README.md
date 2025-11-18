@@ -102,6 +102,7 @@ And place the **Receiver** box below the integration process. Then, click on **R
 13. Choose **OData** as the Adapter Type. And **OData V2** as Message Protocol (on the next dialog). 
 
 <br>![](/exercises/ex3/images/3_16.png)
+<br>![](/exercises/ex3/images/3_40.png)
 
 14. Go to **Connection** tab add connection details as follows:
 - **Address**: https://my427029-api.s4hana.cloud.sap/sap/opu/odata/sap/API_SALES_ORDER_SRV
