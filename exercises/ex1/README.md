@@ -115,7 +115,10 @@ Let's forward the event to SAP Build Process Automation by defining a webhook in
 
 <br>![](/exercises/ex1/images/1_1.png)
 
-2. Click on **Message Client: IN160**.
+2. Click on **Message Client**
+>[!Tip]
+>if you user id is between user01-user25, Click on **Message Client** "IN160-01-25"  else click on "IN160-26-50".
+
 
 <br>![](/exercises/ex1/images/1_2.png)
 
@@ -125,14 +128,37 @@ Let's forward the event to SAP Build Process Automation by defining a webhook in
 
 Provide webhook details as follows (remember to remove spaces while copy-pasting):
 
-- **Name**: `userXX` (Replace **XX** by the user ID provided during workshop)
-- **Queue name**: choose the queue that you created in step 1
-- **Quality of Service**: 1
-- **Webhook URL**: `https://spa-api-gateway-bpi-eu-prod.cfapps.eu10.hana.ondemand.com/internal/be/v1/events`
-- **Authentication**: `oAuth2 Client Credentials`
-- **Client ID**: `sb-899a0150-8fc6-4b79-948e-9683254f2c26!b583795|xsuaa!b120249`
-- **Client Secret**: `5d84187a-1728-4c27-ae6b-1c62a6fe22b8$Y5GJG7LMK0k2y4goFdMf7M4C62as6ry9rxF0HUVTK0g=`
-- **Token URL**: `https://workshop-eu-02a.authentication.eu10.hana.ondemand.com/oauth/token`
+**Name**: `userXX` (Replace **XX** by the user ID provided during workshop)
+- **Queue name**:
+  ```
+  choose the queue that you created in step 1
+  ```
+- **Quality of Service**:
+  ```
+   1
+  ```
+
+- **Webhook URL**:
+```
+https://spa-api-gateway-bpi-eu-prod.cfapps.eu10.hana.ondemand.com/internal/be/v1/events
+```
+
+- **Authentication**:
+```
+oAuth2 Client Credentials
+```
+- **Client ID**:
+  ```
+  sb-899a0150-8fc6-4b79-948e-9683254f2c26!b583795|xsuaa!b120249
+  ```
+- **Client Secret**:
+  ```
+  5d84187a-1728-4c27-ae6b-1c62a6fe22b8$Y5GJG7LMK0k2y4goFdMf7M4C62as6ry9rxF0HUVTK0g=
+  ```
+- **Token URL**:
+  ```
+  https://workshop-eu-02a.authentication.eu10.hana.ondemand.com/oauth/token
+  ```
 
 And click **Create**.
 
