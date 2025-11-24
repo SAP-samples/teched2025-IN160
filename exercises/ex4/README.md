@@ -58,6 +58,7 @@ Select **Process** and click on **Next** once again.
 3. Give your project a name: **TechED_IN160_WorkshopuserXX_Process** and replace XX with your assigned user ID. After that click **Review**. Review your project details and click on **Create**.
 
 <br>![](/exercises/ex4/Images/4_9.png)
+<br>![](/exercises/ex4/Images/4_40.png)
 
 Well done! You now have an new project created in SAP Build.
 
